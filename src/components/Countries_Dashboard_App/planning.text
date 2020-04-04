@@ -1,0 +1,31 @@
+step-1:
+
+--> divide each FormComponents in seperate files
+    - create class component CountriesDashboardApp
+    - create class component Header
+    - create class component CountriesFilterBar
+    - create class component SearchCountry
+    - create class component SelectRegion
+    - create class component Countries
+    - create class component CountryCard
+
+step-2:
+
+--> props -- show data using minimum UI
+
+
+
+Methods
+
+componentDidMount (fetch data here)
+getCountries
+filterCountriesByRegion
+filterCountriesByName
+onChangeTheme
+State variables
+
+countries
+selectedTheme
+Static class properties
+
+themeOptions
