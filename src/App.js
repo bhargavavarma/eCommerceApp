@@ -1,4 +1,6 @@
 import React from "react";
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./components/HomePage";
@@ -15,11 +17,24 @@ import { YourState } from './components/FormComponents/YourState.js';
 import { DisableButton } from './components/FormComponents/DisableButton.js';
 import { FormComponentHome } from './components/FormComponents/FormComponentHome.js';
 import CountryDetails from './components/Countries_Dashboard_App/CountryDetails.js';
-
+import CounterPage from './components/CounterPage/index';
 const cityList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"];
 const states = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"];
 
+import themeStore from './stores/ThemeStore';
+
+@observer
 class App extends React.Component {
+
+  @observable selectedTheme = 'light'
+
+  getCurrentTheme = () => {
+    return themeStore.selectedTheme;
+  }
+
+  setCurrentTheme = (theme) => {
+      themeStore.setCurrentTheme(theme);
+  }
 
   themeOptions = {
     light: {
@@ -44,16 +59,18 @@ class App extends React.Component {
     },
   }
 
-  state = {
+  /*state = {
     selectedTheme: 'light',
-  }
+  }*/
 
   onChangeTheme = () => {
-    if (this.state.selectedTheme === 'light') {
-      this.setState({ selectedTheme: 'dark' });
+    if (this.getCurrentTheme() === 'light') {
+      //this.setState({ selectedTheme: 'dark' });
+      this.setCurrentTheme('dark');
     }
     else {
-      this.setState({ selectedTheme: 'light' });
+      //this.setState({ selectedTheme: 'light' });
+      this.setCurrentTheme('light');
     }
   }
 
@@ -61,6 +78,9 @@ class App extends React.Component {
     return (
       <Router basename={process.env.PUBLIC_URL}>
       <Switch>
+        <Route path='/Counter-page'>
+          <CounterPage />
+        </Route>
         <Route path='/CarsList'>
           <CarsList />
         </Route>
@@ -74,11 +94,11 @@ class App extends React.Component {
         </Route>
         <Route path='/CountriesDashboardApp'>
           <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.state.selectedTheme] }/>
+               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route path='/EmojiGame'>
           <EmojiGameDashboardApp onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.state.selectedTheme] }/>
+               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route path='/Greetings'>
           <Greetings />
@@ -97,7 +117,7 @@ class App extends React.Component {
         </Route>
         <Route path="/:id">
           <CountryDetails onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.state.selectedTheme] }/>
+               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route path='/'>
           <Home />
