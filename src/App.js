@@ -7,7 +7,7 @@ import { CarsList } from './components/CarsList/index';
 import { ToDoList } from './components/toDOList/index';
 import { Home } from './components/home.js';
 import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp';
-import { EmojiGameDashboardApp } from './components/EmojiGame/EmojiGameDashboardApp';
+import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index';
 import { Greetings } from './components/FormComponents/Greetings.js';
 import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js';
 import { VisitedCities } from './components/FormComponents/VisitedCities.js';
@@ -28,16 +28,21 @@ class App extends React.Component {
       displayText: "Dark Theme",
       textColor: 'black',
       cardColor: 'white',
+      background: '#ebf8ff',
+      red: "red",
+      green: "green"
     },
     dark: {
       id: "1",
       color: "#2b3945",
       displayText: "Light Theme",
       textColor: '#fff',
-      cardColor: '#4d94ff',
-    }
+      cardColor: ' #2b6cb0',
+      background: 'black',
+      red: "red",
+      green: "green"
+    },
   }
-
 
   state = {
     selectedTheme: 'light',

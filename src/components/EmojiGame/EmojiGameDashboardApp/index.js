@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { NavBar } from './Navbar.js';
-import { EmojiCard } from './EmojiCard.js';
-import { WinOrLose } from './WinOrLose.js';
+import NavBar from '../NavBar/index';
+import EmojiCard from '../EmojiCard/index';
+import WinOrLose from '../WinOrLose/index';
+import HowToPlay from '../HowToPlay/index';
 
-import { Wrapper, EmojiBody } from './Css';
+import { Wrapper, EmojiBody } from './styledComponents';
 
 class EmojiGameDashboardApp extends React.Component {
 
@@ -81,8 +82,6 @@ class EmojiGameDashboardApp extends React.Component {
                 name: 'Winking Face with Tongue',
                 image: `https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-12.png`
             }
-
-
         ],
         score: 0,
         topScore: 0,
@@ -95,7 +94,7 @@ class EmojiGameDashboardApp extends React.Component {
     }
 
     shuffleEmojis = () => {
-        let emojis = this.state.emojis;
+        let { emojis } = this.state;
         let currentIndex = emojis.length - 1;
         let temporaryValue = null;
         let randomIndex = null;
@@ -110,56 +109,65 @@ class EmojiGameDashboardApp extends React.Component {
     }
 
     incrementScore = (id) => {
-        this.state.emojis.forEach(element => {
+        let { emojis, score } = this.state;
+        emojis.forEach(element => {
             if (id === element.id && element.isClicked === false) {
                 element.isClicked = true;
-                this.setState({ isClicked: false, score: this.state.score + 1 });
+                this.setState({ isClicked: false, score: score + 1 });
+                if (score === 11) {
+                    this.setState({ gameState: 'WIN' });
+                    this.resetGame();
+                }
             }
             else if (id === element.id && element.isClicked === true) {
-                this.setState({ gameState: 'hi' });
-                this.state.emojis.forEach(element => element.isClicked = false);
+                this.setState({ gameState: 'LOSE' });
+                emojis.forEach(element => element.isClicked = false);
             }
         });
     }
 
     onPlayAgainClick = () => {
-        this.setTopScore(this.state.score);
+        this.setTopScore();
         this.setState({ gameState: 'PLAYING', score: 0 });
     }
 
     resetGame = () => {
-
+        let emojis = this.state.emojis.forEach(element => element.isClicked = false);
+        this.setState({ emojis: emojis });
     }
 
-    setTopScore = (score) => {
-        if (this.state.score > this.state.topScore)
+    setTopScore = () => {
+        let { score, topScore } = this.state;
+        if (score > topScore)
             this.setState({ topScore: score });
     }
 
     id = 0;
 
     render() {
+        let { score, topScore, gameState, emojis } = this.state;
+        let { selectedTheme, onChangeTheme } = this.props;
 
         return (
-            <Wrapper theme = { this.props.selectedTheme }>
-                <NavBar onChangeTheme = { this.props.onChangeTheme }
-                        selectedTheme = { this.props.selectedTheme }
-                        score = {this.state.score}
-                        topScore = {this.state.topScore} />        
-                <EmojiBody>
-                    {this.state.gameState === 'PLAYING' ?
-                            this.state.emojis.map(eachEmoji => {
+            <Wrapper theme = { selectedTheme }>
+                <NavBar onChangeTheme = { onChangeTheme } score = { score }
+                        selectedTheme = { selectedTheme } topScore = {topScore} />     
+                <EmojiBody theme = {selectedTheme}>
+                    {gameState === 'PLAYING' ?
+                            emojis.map(eachEmoji => {
                                 this.id += 1;
                                 return <EmojiCard emoji={eachEmoji} key={this.id}
                                     onEmojiClick={this.onEmojiClick}
-                                    selectedTheme={this.props.selectedTheme}/>;
+                                    selectedTheme={selectedTheme}/>;
                     }):
-                    <WinOrLose score={this.state.score} onPlayAgainClick={this.onPlayAgainClick}
-                            />}
+                    <WinOrLose score={score} onPlayAgainClick={this.onPlayAgainClick}
+                            gameState={this.state.gameState==='WIN'?'You Win!':'You Lose!'}
+                            selectedTheme={selectedTheme}/>}
                 </EmojiBody>
+                <HowToPlay/>
             </Wrapper>
         );
     }
 }
 
-export { EmojiGameDashboardApp };
+export default EmojiGameDashboardApp;
