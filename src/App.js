@@ -1,15 +1,23 @@
 import React from "react";
+
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import "./App.css";
+
 import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
+
 import { CarsList } from './components/CarsList/index';
 import { ToDoList } from './components/toDOList/index';
-import { Home } from './components/home.js';
+import TodoApp from './components/mobxTodoApp/TodoApp/index';
+import Home from './components/home.js';
 import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp';
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index';
+import CounterApp from './components/CounterApp/index';
+
 import { Greetings } from './components/FormComponents/Greetings.js';
 import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js';
 import { VisitedCities } from './components/FormComponents/VisitedCities.js';
@@ -18,6 +26,7 @@ import { DisableButton } from './components/FormComponents/DisableButton.js';
 import { FormComponentHome } from './components/FormComponents/FormComponentHome.js';
 import CountryDetails from './components/Countries_Dashboard_App/CountryDetails.js';
 import CounterPage from './components/CounterPage/index';
+
 const cityList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"];
 const states = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"];
 
@@ -33,7 +42,7 @@ class App extends React.Component {
   }
 
   setCurrentTheme = (theme) => {
-      themeStore.setCurrentTheme(theme);
+    themeStore.setCurrentTheme(theme);
   }
 
   themeOptions = {
@@ -89,6 +98,9 @@ class App extends React.Component {
             <ToDoList />
           </div>
         </Route>
+        <Route path='/mobx-todo-app'>
+            <TodoApp />
+        </Route>
         <Route path='/FormComponents'>
           <FormComponentHome />
         </Route>
@@ -99,6 +111,9 @@ class App extends React.Component {
         <Route path='/EmojiGame'>
           <EmojiGameDashboardApp onChangeTheme = { this.onChangeTheme } 
                selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+        </Route>
+        <Route path='/CounterApp'>
+          <CounterApp />
         </Route>
         <Route path='/Greetings'>
           <Greetings />

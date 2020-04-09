@@ -6,6 +6,7 @@ const counterStore = stores.counterStore
 
 @observer
 class CounterPage extends Component {
+  
   handleIncrement = () => {
     counterStore.incrementCounter()
   }
@@ -19,10 +20,10 @@ class CounterPage extends Component {
   render() {
     return (
       <div>
-        <h1>{counterStore.count}</h1>
-        <button onClick={this.handleIncrement}>+</button>
-        <button onClick={this.handleDecrement}>-</button>
-      </div>
+              <h1>{counterStore.count}</h1>
+              <button onClick={this.handleIncrement}>+</button>
+              <button onClick={this.handleDecrement}>-</button>
+            </div>
     )
   }
 }

@@ -75,19 +75,6 @@ Application state
 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React from 'react';
 import './todo.css';
 let count = 0;
@@ -116,17 +103,17 @@ class Todo extends React.Component {
     render() {
         return (
             <div className = 'new-div'>
-                <div className="block1">
-                    <input id={this.props.id} type="checkbox" onChange={this.props.checkBox}
-                            checked={this.props.obj.checkStatus}/>
-                </div>
-                <input id={this.props.id} disabled = {(this.props.obj.checkStatus)? "disabled" : ""}
-                    className={this.props.obj.checkStatus?
-                    'inputName line-through':'inputName'} defaultValue={this.props.text}
-                        onChange={this.props.updateInpu}></input>
-                <button id={this.props.id} className="delete-todo" 
-                    onClick={this.props.remove}>&#x2717;</button>
-            </div>
+                            <div className="block1">
+                                <input id={this.props.id} type="checkbox" onChange={this.props.checkBox}
+                                        checked={this.props.obj.checkStatus}/>
+                            </div>
+                            <input id={this.props.id} disabled = {(this.props.obj.checkStatus)? "disabled" : ""}
+                                className={this.props.obj.checkStatus?
+                                'inputName line-through':'inputName'} defaultValue={this.props.text}
+                                    onChange={this.props.updateInpu}></input>
+                            <button id={this.props.id} className="delete-todo" 
+                                onClick={this.props.remove}>&#x2717;</button>
+                        </div>
         );
     }
 }
@@ -224,13 +211,13 @@ class ToDoList extends React.Component {
                 placeholder='What needs to be done?'/>
             </div>
             {[...this.state.array].map(item=>
-                <Todo key={item.id} id={item.id} obj={item}
-                    text={item.content} checkBox={this.checkBox} 
-                    remove={this.removeListItem} updateInpu={this.updateInput}/>
-            )}
-            <Footer onall={this.onAll} onactive={this.onActive} 
-                    oncompleted={this.onCompleted} itemleft={this.state.itemsLeft} 
-                    onclearcompleted={this.onClearCompleted}/>
+                <Todo key={item.id} id={item.id} obj = { item }
+                text = { item.content } checkBox = { this.checkBox }
+                remove = { this.removeListItem } updateInpu = { this.updateInput }/>)
+                }
+                <Footer onall={this.onAll} onactive={this.onActive} 
+                                                    oncompleted={this.onCompleted} itemleft={this.state.itemsLeft} 
+                                                    onclearcompleted={this.onClearCompleted}/>
         </div>
         );
     }

@@ -5,22 +5,6 @@
     width: 97vw;
 }
 
-input[type=text] {
-
-    width: 60%;
-
-    padding: 10px 12px;
-
-    margin: 8px 0;
-
-    color: #4d4d4d;
-
-    box-sizing: border-box;
-
-    color: grey;
-
-    font-size: 24px;
-}
 
 .inputName {
 

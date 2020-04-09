@@ -11,19 +11,25 @@ class Home extends React.Component {
                 <nav>
                     <ul>
                         <li>
-                            <Link to="/CarsList">1.CarsList</Link>
+                            <Link to="/CarsList">1.Cars Fleet</Link> 
                         </li>
                         <li>
-                            <Link to="/toDOList">2.ToDoList</Link>
+                            <Link to="/toDOList">2.ToDo List</Link>
                         </li>
                         <li>
-                            <Link to="/FormComponents">3.Form Components</Link>
+                            <Link to = "/mobx-todo-app">3.Mobx ToDo App</Link>
                         </li>
                         <li>
-                            <Link to="/CountriesDashboardApp">4.Countries Dashboard App</Link>
+                            <Link to="/FormComponents">4.Form Components</Link>
                         </li>
                         <li>
-                            <Link to="/EmojiGame">5.EmojiGame</Link>
+                            <Link to="/CountriesDashboardApp">5.Countries Dashboard App</Link>
+                        </li>
+                        <li>
+                            <Link to="/EmojiGame">6.Emoji Game</Link>
+                        </li>
+                        <li>
+                            <Link to="/CounterApp">7.Counter App</Link>
                         </li>
                     </ul>
                 </nav> 
@@ -32,4 +38,4 @@ class Home extends React.Component {
     }
 }
 
-export { Home };
+export default Home;

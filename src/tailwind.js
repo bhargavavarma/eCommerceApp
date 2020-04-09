@@ -194,6 +194,7 @@ module.exports = {
             inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
             outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
             none: 'none',
+            paper: ' 0 1px 1px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #eee,0 10px 1px -4px rgba(0, 0, 0, 0.15),0 20px 0 -10px #eee,0 20px 1px -9px rgba(0, 0, 0, 0.15)'
         },
         container: {},
         cursor: {
