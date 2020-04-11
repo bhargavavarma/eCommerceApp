@@ -1,0 +1,13 @@
+// step-1
+
+1. create EventsApp.js
+2. create AddEvent.js
+3. create EventList.js
+
+
+problem statement
+
+I should be able to add a new event
+I should be able to delete an existing event
+I should be able to edit an existing event
+I should be able to view the events count

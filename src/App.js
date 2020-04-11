@@ -11,12 +11,15 @@ import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
 
 import { CarsList } from './components/CarsList/index';
+import CarApp from './components/mobxCarFleet/CarApp/index';
 import { ToDoList } from './components/toDOList/index';
 import TodoApp from './components/mobxTodoApp/TodoApp/index';
 import Home from './components/home.js';
 import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp';
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index';
 import CounterApp from './components/CounterApp/index';
+import EventApp from './components/EventsPage/EventsApp/index';
+import A from './components/Example/index';
 
 import { Greetings } from './components/FormComponents/Greetings.js';
 import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js';
@@ -68,17 +71,11 @@ class App extends React.Component {
     },
   }
 
-  /*state = {
-    selectedTheme: 'light',
-  }*/
-
   onChangeTheme = () => {
     if (this.getCurrentTheme() === 'light') {
-      //this.setState({ selectedTheme: 'dark' });
       this.setCurrentTheme('dark');
     }
     else {
-      //this.setState({ selectedTheme: 'light' });
       this.setCurrentTheme('light');
     }
   }
@@ -92,6 +89,9 @@ class App extends React.Component {
         </Route>
         <Route path='/CarsList'>
           <CarsList />
+        </Route>
+        <Route path='/mobx-car-app'>
+            <CarApp />
         </Route>
         <Route path='/toDOList'>
           <div className="container">
@@ -114,6 +114,12 @@ class App extends React.Component {
         </Route>
         <Route path='/CounterApp'>
           <CounterApp />
+        </Route>
+        <Route path='/events-app'>
+          <EventApp />
+        </Route>
+        <Route path='/example'>
+          <A />
         </Route>
         <Route path='/Greetings'>
           <Greetings />

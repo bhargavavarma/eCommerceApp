@@ -1,35 +1,30 @@
 import React from 'react';
 
 import { FooterBody } from './styledComponents';
+import { action } from 'mobx';
 class Footer extends React.Component {
 
-    onAll = () => {
-        this.props.onAll();
+    @action.bound
+    onChangeSelectedFilter =  (event) => {
+        const {onChangeSelectedFilter} = this.props;
+        onChangeSelectedFilter(event.target.value);
     }
 
-    onActive = () => {
-        this.props.onActive();
-    }
-
-    onCompleted = () => {
-        this.props.onCompleted();
-    }
-
-    onClearCompleted = () => {
-        this.props.onClearCompleted();
+    @action.bound
+    onClearCompleted() {
+        const {onClearCompleted} = this.props;
+        onClearCompleted('ClearCompleted');
     }
 
     render() {
+        const {getActiveTodosCount} = this.props;
         return (
-            <FooterBody><span>{this.props.getActiveTodosCount} item left</span>
-                <button
-                    onClick={this.onAll}>All</button>
-                <button
-                    onClick = { this.onActive } > Active < /button>
-                                    <button
-                    onClick={this.onCompleted}>Completed</button>
-                <button
-                    onClick={this.onClearCompleted}>Clear completed</button>
+            <FooterBody>
+                <span>{getActiveTodosCount} item left</span>
+                <button onClick={this.onChangeSelectedFilter} value='All'>All</button>
+                <button onClick = { this.onChangeSelectedFilter } value='Active'> Active </button>
+                <button onClick={this.onChangeSelectedFilter} value='Completed'>Completed</button>
+                <button onClick={this.onClearCompleted} value='ClearCompleted'>Clear completed</button>
             </FooterBody>
         );
     }

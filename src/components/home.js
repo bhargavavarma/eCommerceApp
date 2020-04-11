@@ -14,22 +14,31 @@ class Home extends React.Component {
                             <Link to="/CarsList">1.Cars Fleet</Link> 
                         </li>
                         <li>
-                            <Link to="/toDOList">2.ToDo List</Link>
+                            <Link to="/mobx-car-app">2.Mobx Cars Fleet</Link> 
                         </li>
                         <li>
-                            <Link to = "/mobx-todo-app">3.Mobx ToDo App</Link>
+                            <Link to="/toDOList">3.ToDo App</Link>
                         </li>
                         <li>
-                            <Link to="/FormComponents">4.Form Components</Link>
+                            <Link to = "/mobx-todo-app">4.Mobx ToDo App</Link>
                         </li>
                         <li>
-                            <Link to="/CountriesDashboardApp">5.Countries Dashboard App</Link>
+                            <Link to="/FormComponents">5.Form Components</Link>
                         </li>
                         <li>
-                            <Link to="/EmojiGame">6.Emoji Game</Link>
+                            <Link to="/CountriesDashboardApp">6.Countries Dashboard App</Link>
                         </li>
                         <li>
-                            <Link to="/CounterApp">7.Counter App</Link>
+                            <Link to="/EmojiGame">7.Emoji Game</Link>
+                        </li>
+                        <li>
+                            <Link to="/CounterApp">8.Counter App</Link>
+                        </li>
+                        <li>
+                            <Link to="/events-app">9.Events App</Link>
+                        </li>
+                        <li>
+                            <Link to="/example">10. Provider example</Link>
                         </li>
                     </ul>
                 </nav> 
