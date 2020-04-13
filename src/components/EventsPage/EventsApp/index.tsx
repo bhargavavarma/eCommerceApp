@@ -1,6 +1,9 @@
 import React from 'react';
+import { observer } from 'mobx-react';
+import { observable, action } from 'mobx';
 
-import EventStores from '../../../stores/EventStore/index.js';
+import EventStores from '../../../stores/EventStore/index';
+import Event from '../Event/index';
 
 import {
     Wrapper,
@@ -15,10 +18,6 @@ import {
     EventsList,
     NoEvents
 } from './styledComponents';
-
-import { observer } from 'mobx-react';
-import { observable, action } from 'mobx';
-import Event from '../Event/index';
 
 @observer class EventApp extends React.Component {
 

@@ -1,0 +1,5 @@
+ git config --global user.name "bhargava varma"
+ git remote add upstream https://bitbucket.org/rahulsccl/tap-react-training-reference.git
+ git commit -m 'my react projects'
+ git push origin master
+ npm i

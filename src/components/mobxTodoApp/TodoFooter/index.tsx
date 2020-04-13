@@ -1,7 +1,8 @@
 import React from 'react';
+import { action } from 'mobx';
 
 import { FooterBody } from './styledComponents';
-import { action } from 'mobx';
+
 class Footer extends React.Component {
 
     @action.bound

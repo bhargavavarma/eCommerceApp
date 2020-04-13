@@ -1,7 +1,8 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import ToDoStores from '../../../stores/TodoStore/index.js';
-import { observer } from 'mobx-react';
+
 import {
     EachTodo,
     CheckBox,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import ToDoStores from '../../../stores/TodoStore/index.js';
 import AddTodo from '../AddTodo/index';
@@ -13,7 +14,6 @@ import {
     TodoFooter
 }
 from './styledComponents';
-import { observer } from 'mobx-react';
 
 @observer class TodoApp extends React.Component {
 

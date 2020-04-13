@@ -1,8 +1,10 @@
 import React from 'react';
 import { observable, action, computed } from 'mobx';
 import {observer} from 'mobx-react';
-import ToDoModel from '../Models/index.js';
 import {reaction} from 'mobx';
+
+import ToDoModel from '../Models/index.js';
+
 @observer
 class TodoStores  extends React.Component {
 
