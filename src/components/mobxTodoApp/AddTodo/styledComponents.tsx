@@ -13,14 +13,14 @@ const CheckBox = styled.div `
     `}
 `;
 
-const CheckBoxInput = styled.input `
+const CheckBoxInput = styled.input<{isCompleted:any}> `
     ${tw`
 
     `}
     background:${props=>props.isCompleted === true ? '#38a169' : '#cbd5e0'}
 `;
 
-const DisplayTitle = styled.input `
+const DisplayTitle = styled.input<{isCompleted:any}> `
     ${tw`
         w-4/5 border h-10 text-center
     `}

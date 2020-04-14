@@ -37,9 +37,6 @@ class Home extends React.Component {
                         <li>
                             <Link to="/events-app">9.Events App</Link>
                         </li>
-                        <li>
-                            <Link to="/example">10. Provider example</Link>
-                        </li>
                     </ul>
                 </nav> 
             </div>

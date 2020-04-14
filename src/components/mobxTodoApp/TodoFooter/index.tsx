@@ -3,7 +3,7 @@ import { action } from 'mobx';
 
 import { FooterBody } from './styledComponents';
 
-class Footer extends React.Component {
+class Footer extends React.Component<{getActiveTodosCount:any,onClearCompleted:any,onChangeSelectedFilter:any}> {
 
     @action.bound
     onChangeSelectedFilter =  (event) => {

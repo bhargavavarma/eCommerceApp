@@ -4,20 +4,20 @@ import {observer} from 'mobx-react';
 
 @observer
 class EventModel extends React.Component {
-    id;
-    @observable name;
-    @observable location;
+    id : number;
+    
+    @observable name:string;
+    @observable location : string;
 
     constructor(eventObject) {
-        super();
-        console.log(eventObject);
+        super(eventObject);
         this.id = eventObject.id;
         this.name = eventObject.name;
         this.location = eventObject.location;
     }
  
     @action.bound
-    onUpdateEventDetails(updatedDetails) {
+    onUpdateEventDetails(updatedDetails : string) {
         this.name = updatedDetails;
     }
 }

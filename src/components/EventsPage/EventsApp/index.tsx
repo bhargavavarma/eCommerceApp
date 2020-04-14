@@ -2,7 +2,8 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { observable, action } from 'mobx';
 
-import EventStores from '../../../stores/EventStore/index';
+import {eventStores} from '../../../stores/EventStore/index';
+import EventModel from '../../../stores/Models/EventModel';
 import Event from '../Event/index';
 
 import {
@@ -21,19 +22,18 @@ import {
 
 @observer class EventApp extends React.Component {
 
-    @observable eventName;
+    @observable eventName : String;
+    @observable eventLocation : String;
 
-    @observable EventLocation;
-
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.eventName = '';
         this.eventLocation = '';
     }
 
     @action.bound
     onAddEvent(event) {    
-        EventStores.onAddEvent(this.eventName,this.eventLocation);
+        eventStores.onAddEvent(this.eventName,this.eventLocation);
     }
 
     @action.bound
@@ -64,11 +64,11 @@ import {
                     </AddEvent>
                </form>
                <RenderingEventsList>
-                   {EventStores.noOfEvents != 0 ?
+                   {eventStores.noOfEvents !== 0 ?
                     <EventsList>
-                    <NumberOfEvents>Number of Events: {EventStores.noOfEvents}</NumberOfEvents>
-                    {EventStores.events.map(item=><Event key={item.id} eachEvent={item} 
-                            onDeleteEvent={EventStores.onDeleteEvent}/>
+                    <NumberOfEvents>Number of Events: {eventStores.noOfEvents}</NumberOfEvents>
+                    {eventStores.events.map((item:EventModel)=>
+                    <Event eachEvent={item} key={item.id}/>
                     )}</EventsList>:<NoEvents>No Events...</NoEvents>}
                </RenderingEventsList>
             </Wrapper>

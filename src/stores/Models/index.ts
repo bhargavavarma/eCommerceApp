@@ -4,12 +4,12 @@ import {observer} from 'mobx-react';
 
 @observer
 class ToDoModel extends React.Component {
-    id;
-    @observable title;
-    @observable isCompleted;
+    id:number
+    @observable title : string
+    @observable isCompleted : boolean
 
     constructor(todoObject) {
-        super();
+        super(todoObject);
         this.id = todoObject.id;
         this.title = todoObject.title;
         this.isCompleted = todoObject.isCompleted;
@@ -21,7 +21,7 @@ class ToDoModel extends React.Component {
     }
  
     @action.bound
-    onUpdateTodoTitle(updatedTitle) {
+    onUpdateTodoTitle(updatedTitle : string) {
         this.title = updatedTitle;
     }
 }

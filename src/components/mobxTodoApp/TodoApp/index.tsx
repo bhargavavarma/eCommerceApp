@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import ToDoStores from '../../../stores/TodoStore/index.js';
+import {todoStores} from '../../../stores/TodoStore/index';
+import ToDoModel from '../../../stores/Models/index';
 import AddTodo from '../AddTodo/index';
 import Footer from '../TodoFooter/index';
 
@@ -15,6 +16,7 @@ import {
 }
 from './styledComponents';
 
+
 @observer class TodoApp extends React.Component {
 
     render() {
@@ -22,19 +24,19 @@ from './styledComponents';
             <Wrapper>
                 <TodoHeader>todos</TodoHeader>
                 <UserInput>
-                    <DisplayTodo type='text' onKeyDown={ToDoStores.onAddTodo} 
+                    <DisplayTodo type='text' onKeyDown={todoStores.onAddTodo} 
                         placeholder='What needs to be done?'></DisplayTodo>
                 </UserInput>
                 <TodosList>
-                    {ToDoStores.filteredTodos.map(EachTodo=>
-                        <AddTodo key={EachTodo.id} AddingEachTodo={EachTodo}
-                                onRemoveTodo={ToDoStores.onRemoveTodo}/>
+                    {todoStores.filteredTodos.map((EachTodo:ToDoModel)=>
+                        <AddTodo  AddingEachTodo={EachTodo} key={EachTodo.id}
+                                onRemoveTodo = {todoStores.onRemoveTodo}/>
                     )}
                 </TodosList>
                 <TodoFooter>
-                    <Footer getActiveTodosCount={ToDoStores.activeTodosCount} 
-                            onClearCompleted={ToDoStores.onClearCompleted}
-                            onChangeSelectedFilter={ToDoStores.onChangeSelectedFilter}/>
+                    <Footer getActiveTodosCount={todoStores.activeTodosCount} 
+                            onClearCompleted={todoStores.onClearCompleted}
+                            onChangeSelectedFilter={todoStores.onChangeSelectedFilter}/>
                 </TodoFooter>
             </Wrapper>
         );

@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import ToDoStores from '../../../stores/TodoStore/index.js';
+import {todoStores} from '../../../stores/TodoStore/index';
+import ToDoModel from '../../../stores/Models/index';
 
 import {
     EachTodo,
@@ -12,8 +13,13 @@ import {
 }
 from './styledComponents';
 
+type AddingEachTodoProps = {
+    AddingEachTodo: ToDoModel,
+    onRemoveTodo: Function
+}
+
 @observer
-class AddTodo extends React.PureComponent {
+class AddTodo extends React.PureComponent<AddingEachTodoProps,{key:any}> {
 
     onCompleted = () => {
         this.props.AddingEachTodo.onCompleted();
@@ -21,10 +27,10 @@ class AddTodo extends React.PureComponent {
 
     onRemoveTodo = () => {
         const {AddingEachTodo} = this.props;
-        ToDoStores.onRemoveTodo(AddingEachTodo.id);
+        todoStores.onRemoveTodo(AddingEachTodo.id);
     }
 
-    onUpdateTodoTitle = (event) => {
+    onUpdateTodoTitle = (event:any) => {
         this.props.AddingEachTodo.onUpdateTodoTitle(event.target.value);
     }
 
@@ -33,16 +39,15 @@ class AddTodo extends React.PureComponent {
         return (
             <EachTodo>
                 <CheckBox>
-                    <CheckBoxInput id={AddingEachTodo.id} type="checkbox" 
+                    <CheckBoxInput type="checkbox" 
                                 onChange={this.onCompleted} isCompleted={AddingEachTodo.isCompleted}>
                     </CheckBoxInput>
                 </CheckBox>
-                    <DisplayTitle id={AddingEachTodo.id}  isCompleted={AddingEachTodo.isCompleted}
+                    <DisplayTitle isCompleted={AddingEachTodo.isCompleted}
                         defaultValue={AddingEachTodo.title} onChange={this.onUpdateTodoTitle}>
                     </DisplayTitle>
                 <RemoveTodo>
-                    <button
-                        onClick={this.onRemoveTodo}>&#x2717;</button>
+                    <button onClick={this.onRemoveTodo}>&#x2717;</button>
                 </RemoveTodo>
             </EachTodo>
         );
@@ -50,3 +55,5 @@ class AddTodo extends React.PureComponent {
 }
 
 export default AddTodo;
+
+//id={AddingEachTodo.id}

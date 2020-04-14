@@ -1,21 +1,13 @@
-import React from 'react';
 import { observable, action, computed } from 'mobx';
-import {observer} from 'mobx-react';
 
 import EventModel from '../Models/EventModel';
 
-@observer
-class EventStore extends React.Component {
+class EventStore {
 
-    @observable events;
-
-    constructor() {
-        super();
-        this.events = [];
-    }
-
+    @observable events : Array<EventModel> = [];
+    
     @action.bound
-    onAddEvent(eventName,eventLocation) {
+    onAddEvent(eventName:String,eventLocation:String) {
         let addingEachEvent = {
             id: Math.floor(Math.random() * 10000),
             name: eventName,
@@ -25,9 +17,9 @@ class EventStore extends React.Component {
         this.events.push(eventObject);
     }
  
-    @action.bound
-    onDeleteEvent(id) {
-        alert(1);
+    @action.bound   
+    onDeleteEvent(id : Number) {
+        alert(id);
     }
 
     @computed get noOfEvents() {
@@ -35,5 +27,5 @@ class EventStore extends React.Component {
     }
 }
 
-const EventStores  = new EventStore ();
-export default EventStores;
+const eventStores  = new EventStore();
+export{eventStores,EventStore};

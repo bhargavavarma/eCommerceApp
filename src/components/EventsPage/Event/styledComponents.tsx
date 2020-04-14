@@ -14,6 +14,7 @@ const EventDetails = styled.div `
     `}
 `;
 
+
 const EventName = styled.input `
     ${tw`
     border border-gray-600 border-2 my-3 mx-1 text-xs w-full p-1

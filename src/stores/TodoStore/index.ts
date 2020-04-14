@@ -3,23 +3,16 @@ import { observable, action, computed } from 'mobx';
 import {observer} from 'mobx-react';
 import {reaction} from 'mobx';
 
-import ToDoModel from '../Models/index.js';
+import ToDoModel from "../Models";
 
 @observer
 class TodoStores  extends React.Component {
-
-    @observable todos;
-    @observable selectedFilter;
-
-    constructor() {
-        super();
-        this.todos = [];
-        this.selectedFilter = 'All';
-        this.addTodoReaction;
-    }
+    
+    @observable todos:Array<ToDoModel> = [];
+    @observable selectedFilter = 'All';
 
     @action.bound
-    onAddTodo(event) {
+    onAddTodo(event:any) {
         if (event.keyCode === 13 && event.target.value !== '') {
             let value = event.target.value;
             let addingEachTodo = {
@@ -34,18 +27,18 @@ class TodoStores  extends React.Component {
     }
  
     @action.bound
-    onRemoveTodo(id) {
+    onRemoveTodo(id:number) {
         let filteredTodos = this.todos.filter(item => item.id !== Number(id));
         this.todos = filteredTodos;
     }
 
     @action.bound
-    onChangeSelectedFilter(filter){
+    onChangeSelectedFilter(filter:any){
         this.selectedFilter = filter;
     }
 
     @action.bound
-    onClearCompleted(filter) {
+    onClearCompleted(filter:any) {
         const clearTodos = this.todos.filter(item => item.isCompleted === false);
         this.todos = clearTodos;
         this.selectedFilter = filter;
@@ -83,5 +76,5 @@ class TodoStores  extends React.Component {
     }
 }
 
-const ToDoStores  = new TodoStores ();
-export default ToDoStores;
+const todoStores  = new TodoStores(ToDoModel);
+export {todoStores,TodoStores};
