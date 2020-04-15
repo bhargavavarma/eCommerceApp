@@ -13,13 +13,10 @@ import {
 }
 from './styledComponents';
 
-type AddingEachTodoProps = {
-    AddingEachTodo: ToDoModel,
-    onRemoveTodo: Function
-}
+
 
 @observer
-class AddTodo extends React.PureComponent<AddingEachTodoProps,{key:any}> {
+class AddTodo extends React.PureComponent {
 
     onCompleted = () => {
         this.props.AddingEachTodo.onCompleted();
@@ -30,7 +27,7 @@ class AddTodo extends React.PureComponent<AddingEachTodoProps,{key:any}> {
         todoStores.onRemoveTodo(AddingEachTodo.id);
     }
 
-    onUpdateTodoTitle = (event:any) => {
+    onUpdateTodoTitle = (event) => {
         this.props.AddingEachTodo.onUpdateTodoTitle(event.target.value);
     }
 

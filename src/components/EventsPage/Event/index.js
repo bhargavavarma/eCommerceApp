@@ -13,10 +13,7 @@ import {
     UpdateButton
 } from './styledComponents';
 
-type eachEventProps = {
-    eachEvent:EventModel
-}
-@observer class Event extends React.Component<eachEventProps> {
+@observer class Event extends React.Component{
 
     render() {
         return(

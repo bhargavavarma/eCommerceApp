@@ -4,3 +4,24 @@
 [0413/211809.351:ERROR:exception_snapshot_win.cc(98)] thread ID 8440 not found in process
 [0413/211809.351:ERROR:exception_snapshot_win.cc(98)] thread ID 2800 not found in process
 [0413/211809.351:ERROR:exception_snapshot_win.cc(98)] thread ID 5312 not found in process
+[0414/210322.139:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0414/211322.149:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0414/211322.149:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0414/211822.150:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/120816.632:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/121248.958:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/123154.647:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/123429.459:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/141657.666:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/142657.677:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/142657.677:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/143157.667:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/144657.678:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/150053.014:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/150157.680:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/151657.681:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/153157.692:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/154657.704:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/160157.711:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/161657.716:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0415/161832.517:ERROR:crash_report_database_win.cc(469)] failed to stat report

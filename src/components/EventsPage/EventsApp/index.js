@@ -22,8 +22,8 @@ import {
 
 @observer class EventApp extends React.Component {
 
-    @observable eventName : String;
-    @observable eventLocation : String;
+    @observable eventName;
+    @observable eventLocation;
 
     constructor(props) {
         super(props);
@@ -67,7 +67,7 @@ import {
                    {eventStores.noOfEvents !== 0 ?
                     <EventsList>
                     <NumberOfEvents>Number of Events: {eventStores.noOfEvents}</NumberOfEvents>
-                    {eventStores.events.map((item:EventModel)=>
+                    {eventStores.events.map((item)=>
                     <Event eachEvent={item} key={item.id}/>
                     )}</EventsList>:<NoEvents>No Events...</NoEvents>}
                </RenderingEventsList>

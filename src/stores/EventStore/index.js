@@ -4,10 +4,10 @@ import EventModel from '../Models/EventModel';
 
 class EventStore {
 
-    @observable events : Array<EventModel> = [];
+    @observable events = [];
     
     @action.bound
-    onAddEvent(eventName:String,eventLocation:String) {
+    onAddEvent(eventName,eventLocation) {
         let addingEachEvent = {
             id: Math.floor(Math.random() * 10000),
             name: eventName,
@@ -18,7 +18,7 @@ class EventStore {
     }
  
     @action.bound   
-    onDeleteEvent(id : Number) {
+    onDeleteEvent(id) {
         alert(id);
     }
 

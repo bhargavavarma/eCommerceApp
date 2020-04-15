@@ -8,14 +8,13 @@ import Footer from '../TodoFooter/index';
 
 import {
     Wrapper,
-    TodoHeader,
+    TodoHeader,                            
     DisplayTodo,
     UserInput,
     TodosList,
     TodoFooter
 }
 from './styledComponents';
-
 
 @observer class TodoApp extends React.Component {
 
@@ -28,7 +27,7 @@ from './styledComponents';
                         placeholder='What needs to be done?'></DisplayTodo>
                 </UserInput>
                 <TodosList>
-                    {todoStores.filteredTodos.map((EachTodo:ToDoModel)=>
+                    {todoStores.filteredTodos.map((EachTodo)=>
                         <AddTodo  AddingEachTodo={EachTodo} key={EachTodo.id}
                                 onRemoveTodo = {todoStores.onRemoveTodo}/>
                     )}

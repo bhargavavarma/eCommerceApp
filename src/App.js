@@ -17,6 +17,7 @@ import { CountriesDashboardApp } from './components/Countries_Dashboard_App/Coun
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index';
 import CounterApp from './components/CounterApp/index';
 import EventApp from './components/EventsPage/EventsApp/index';
+import GridMemoryGame from './components/GridMemoryApp/GridMemoryGame/index';
 
 import { Greetings } from './components/FormComponents/Greetings.js';
 import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js';
@@ -31,8 +32,6 @@ import themeStore from './stores/ThemeStore';
 const cityList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"];
 const states = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"];
 
-
-
 @observer
 class App extends React.Component {
 
@@ -46,7 +45,9 @@ class App extends React.Component {
     themeStore.setCurrentTheme(theme);
   }
 
-  themeOptions = {
+  // countriesDashBoard
+
+  /*themeOptions = {
     light: {
       id: "0",
       color: "#fff",
@@ -66,6 +67,19 @@ class App extends React.Component {
       background: 'black',
       red: "red",
       green: "green"
+    },
+  }*/
+
+  // GridGame
+
+  themeOptions = {
+    light: {
+      id: "0",
+      displayText : 'Dark Mode'
+    },
+    dark: {
+      id: "1",
+      displayText : 'Light Mode'
     },
   }
 
@@ -112,6 +126,10 @@ class App extends React.Component {
         </Route>
         <Route path='/events-app'>
           <EventApp />
+        </Route>
+        <Route path='/grid-game '>
+          <GridMemoryGame onChangeTheme = { this.onChangeTheme } 
+               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route path='/Greetings'>
           <Greetings />

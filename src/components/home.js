@@ -37,6 +37,9 @@ class Home extends React.Component {
                         <li>
                             <Link to="/events-app">9.Events App</Link>
                         </li>
+                        <li>
+                            <Link to="/grid-game ">10.Grid Memory App</Link>
+                        </li>
                     </ul>
                 </nav> 
             </div>
