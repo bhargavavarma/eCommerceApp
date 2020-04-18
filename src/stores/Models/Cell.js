@@ -1,16 +1,13 @@
-import { observable } from 'mobx';
-import {observer} from 'mobx-react';
+import { observable } from 'mobx'
 
-@observer
 class Cell {
-    id
-    @observable isHidden;
+  id
+  @observable isHidden;
 
-    constructor(gridObject) {
-        super(gridObject)
-        this.id = gridObject.id
-        this.isHidden = gridObject.isHidden
-    }
+  constructor(gridObject) {
+    this.id = gridObject.id
+    this.isHidden = gridObject.isHidden
+  }
 }
 
 export default Cell;

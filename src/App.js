@@ -68,6 +68,14 @@ class App extends React.Component {
       red: "red",
       green: "green"
     },
+    <Route path='/CountriesDashboardApp'>
+          <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
+               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+        </Route>
+        <Route path="/:id">
+          <CountryDetails onChangeTheme = { this.onChangeTheme } 
+               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+        </Route>
   }*/
 
   // GridGame
@@ -75,11 +83,15 @@ class App extends React.Component {
   themeOptions = {
     light: {
       id: "0",
-      displayText : 'Dark Mode'
+      displayText : 'Dark Mode',
+      color: "#fff",
+      textColor: 'black',
     },
     dark: {
       id: "1",
-      displayText : 'Light Mode'
+      displayText : 'Light Mode',
+      color: "#2b3945",
+      textColor: 'white',
     },
   }
 
@@ -113,10 +125,6 @@ class App extends React.Component {
         <Route path='/FormComponents'>
           <FormComponentHome />
         </Route>
-        <Route path='/CountriesDashboardApp'>
-          <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-        </Route>
         <Route path='/EmojiGame'>
           <EmojiGameDashboardApp onChangeTheme = { this.onChangeTheme } 
                selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
@@ -145,10 +153,6 @@ class App extends React.Component {
         </Route>
         <Route path='/DisableButton'>
           <DisableButton />
-        </Route>
-        <Route path="/:id">
-          <CountryDetails onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route path='/'>
           <Home />

@@ -2,7 +2,6 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import {todoStores} from '../../../stores/TodoStore/index';
-import ToDoModel from '../../../stores/Models/index';
 
 import {
     EachTodo,
@@ -12,8 +11,6 @@ import {
     CheckBoxInput
 }
 from './styledComponents';
-
-
 
 @observer
 class AddTodo extends React.PureComponent {
@@ -52,5 +49,3 @@ class AddTodo extends React.PureComponent {
 }
 
 export default AddTodo;
-
-//id={AddingEachTodo.id}

@@ -8,11 +8,11 @@ import ToDoModel from "../Models";
 @observer
 class TodoStores  extends React.Component {
     
-    @observable todos:Array<ToDoModel> = [];
+    @observable todos = [];
     @observable selectedFilter = 'All';
 
     @action.bound
-    onAddTodo(event:any) {
+    onAddTodo(event) {
         if (event.keyCode === 13 && event.target.value !== '') {
             let value = event.target.value;
             let addingEachTodo = {
@@ -27,18 +27,18 @@ class TodoStores  extends React.Component {
     }
  
     @action.bound
-    onRemoveTodo(id:number) {
+    onRemoveTodo(id) {
         let filteredTodos = this.todos.filter(item => item.id !== Number(id));
         this.todos = filteredTodos;
     }
 
     @action.bound
-    onChangeSelectedFilter(filter:any){
+    onChangeSelectedFilter(filter){
         this.selectedFilter = filter;
     }
 
     @action.bound
-    onClearCompleted(filter:any) {
+    onClearCompleted(filter) {
         const clearTodos = this.todos.filter(item => item.isCompleted === false);
         this.todos = clearTodos;
         this.selectedFilter = filter;
