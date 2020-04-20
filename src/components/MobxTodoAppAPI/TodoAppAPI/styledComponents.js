@@ -27,7 +27,13 @@ const UserInput = styled.div `
 
 const TodosList = styled.div `
     ${tw`
-        w-full flex items-center flex-col
+         w-full flex items-center flex-col
+    `}
+`;
+
+const Display = styled.div `
+    ${tw`
+         w-full flex items-center flex-col
     `}
 `;
 
@@ -42,6 +48,7 @@ export {
     TodoHeader,
     DisplayTodo,
     UserInput,
+    Display,
     TodosList,
     TodoFooter
 };

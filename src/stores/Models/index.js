@@ -9,7 +9,7 @@ class ToDoModel extends React.Component {
     @observable isCompleted
 
     constructor(todoObject) {
-        super(todoObject);
+        super(todoObject)
         this.id = todoObject.id;
         this.title = todoObject.title;
         this.isCompleted = todoObject.isCompleted;
