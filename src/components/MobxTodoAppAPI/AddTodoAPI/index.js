@@ -28,7 +28,7 @@ from './styledComponents';
 
   render() {
     const {AddingEachTodo} = this.props;
-    console.log(AddingEachTodo.isCompleted)
+    console.log(this.props)
     return (
       <EachTodo>
         <CheckBox>
