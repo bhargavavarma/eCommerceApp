@@ -31,6 +31,7 @@ import { FormComponentHome } from './components/FormComponents/FormComponentHome
 import CounterPage from './components/CounterPage/index'
 import themeStore from './stores/ThemeStore'
 import UsersPage from './components/UsersPage/index'
+import LoginPage from './components/LoginPage/index'
 import stores from './stores'
 import "./App.css"
 
@@ -149,6 +150,9 @@ class App extends React.Component {
                selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route exact path='/usersAPI' component = {UsersPage} />
+        <Route path='/loginPage'>
+          <LoginPage />
+        </Route>
         <Route path='/Greetings'>
           <Greetings />
         </Route>
