@@ -1,59 +1,41 @@
 import React from 'react'
-import { observer } from 'mobx-react'
-import { observable } from "mobx"
-import Loader from 'react-loader-spinner'
-import {todoStores} from '../../../stores/TodoStore/indexAPI'
-import AddTodo from '../AddTodoAPI/index'
-import Footer from '../TodoFooterAPI/index'
-import {
-  Wrapper,
-  TodoHeader,
-  DisplayTodo,
-  UserInput,
-  TodosList,
-  TodoFooter,
-  Display
-}
-from './styledComponents'
+import { observer, inject } from 'mobx-react'
+import LoadingWrapperWithFailure from "../../common/LoadingWrapperWithFailure"
+import TodoList from '../TodoList/index'
 
+@inject('todoStores')
 @observer class TodoAppAPI extends React.Component {
 
-  @observable isFetching = true
+  componentDidMount() {
+    this.doNetworkCalls()
+  }
 
-  async componentDidMount() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/todos')
-    const json = await response.json()
-    this.isFetching = false
-    todoStores.todos = json
-    // json.forEach(element => {
-    //   todoStores.onAddJsonData(element)
-    // });
+  componentWillUnmount() {
+    this.getTodoStore().clearStore()
+  }
+
+  getTodoStore = () => {
+    return this.props.todoStores
+  }
+  
+  doNetworkCalls = () => {
+    this.getTodoStore().getTodosAPI()
+  }
+
+  renderTodoList = () => {
+    return(
+      <TodoList />
+    )
   }
 
   render() {
-    return (
-      <Wrapper>
-        <TodoHeader>todos</TodoHeader>
-        <UserInput>
-          <DisplayTodo type='text' onKeyDown={todoStores.onAddTodo} 
-            placeholder='What needs to be done?'></DisplayTodo>
-        </UserInput>
-        {this.isFetching === false ?
-        <Display>
-        <TodosList>
-          {todoStores.filteredTodos.map((EachTodo)=>
-              <AddTodo  AddingEachTodo={EachTodo} key={EachTodo.id}
-              onRemoveTodo = {todoStores.onRemoveTodo}/>
-          )}
-        </TodosList>
-        <TodoFooter>
-          <Footer getActiveTodosCount={todoStores.activeTodosCount} 
-            onClearCompleted={todoStores.onClearCompleted}
-            onChangeSelectedFilter={todoStores.onChangeSelectedFilter}/>
-        </TodoFooter>
-        </Display>
-        : <Loader type="ThreeDots" color="#00BFFF" height={300} width={100} />}
-      </Wrapper>
+    const { getTodosApiStatus, getTodosApiError } = this.getTodoStore()
+    return ( 
+      <LoadingWrapperWithFailure 
+      apiStatus = {getTodosApiStatus}
+      apiError = {getTodosApiError}
+      onRetryClick = {this.doNetworkCalls} 
+      renderSuccessUI = {this.renderTodoList} />
     );
   }
 }

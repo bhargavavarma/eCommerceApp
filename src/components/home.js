@@ -40,6 +40,9 @@ class Home extends React.Component {
             <li>
               <Link to="/mobx-todo-app-API">11.Mobx Todo App API</Link>
             </li>
+            <li>
+              <Link to="/usersAPI">12.Users API hands-on</Link>
+            </li>
           </ul>
         </nav> 
       </div>

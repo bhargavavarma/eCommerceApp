@@ -1,15 +1,53 @@
-import React from 'react';
-import { observable, action, computed } from 'mobx';
-import {observer} from 'mobx-react';
-import {reaction} from 'mobx';
+import { observable, action, computed, toJS } from 'mobx'
+import { API_INITIAL } from '@ib/api-constants'
+import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
+import {reaction} from 'mobx'
 
-import ToDoModel from "../Models";
+import ToDoModel from "../Models"
 
-@observer
-class TodoStores  extends React.Component {
+class TodoStores {
     
-  @observable todos = [];
-  @observable selectedFilter = 'All';
+  @observable todos
+  @observable selectedFilter
+  @observable getTodosApiStatus
+  @observable getTodosApiError
+  todoService
+  
+  constructor(todoService) {
+    this.todoService = todoService
+    this.init()
+  }
+
+  @action.bound
+  init() {
+    this.getTodosApiStatus = API_INITIAL
+    this.getTodosApiError = null
+    this.todos = []
+    this.selectedFilter = 'All'
+  }
+
+  @action.bound
+  setTodosApiResponse(todosResponse) {
+    todosResponse.map(eachTodo => this.onAddJsonData(eachTodo))
+  }
+
+  @action.bound
+  setTodosApiError(error) {
+    this.getTodosApiError = error
+  }
+
+  @action.bound
+  setTodosApiStatus(apiStatus) {
+    this.getTodosApiStatus = apiStatus
+  }
+
+  @action.bound
+  getTodosAPI() {
+    const todosPromise = this.todoService.getTodosAPI()
+    return bindPromiseWithOnSuccess(todosPromise)
+    .to(this.setTodosApiStatus,this.setTodosApiResponse)
+    .catch(this.getTodosApiError)
+  }
 
   @action.bound
   onAddTodo(event) {
@@ -21,8 +59,9 @@ class TodoStores  extends React.Component {
         isCompleted: false,
       };
       const todoObject=new ToDoModel(addingEachTodo)
-      this.todos.push(todoObject)
+      this.todos.unshift(todoObject)
       event.target.value = ''
+      console.log(toJS(this.todos))
     }
   }
 
@@ -39,21 +78,21 @@ class TodoStores  extends React.Component {
  
   @action.bound
   onRemoveTodo(id) {
-    console.log(id)
-    let filteredTodos = this.todos.filter(item => item.id !== Number(id));
-    this.todos = filteredTodos;
+    let filteredTodos = this.todos.filter(item => item.id !== Number(id))
+    this.todos = filteredTodos
+    console.log(this.todos.length)
   }
 
   @action.bound
   onChangeSelectedFilter(filter){
-    this.selectedFilter = filter;
+    this.selectedFilter = filter
   }
 
   @action.bound
   onClearCompleted(filter) {
-    const clearTodos = this.todos.filter(item => item.isCompleted === false);
-    this.todos = clearTodos;
-    this.selectedFilter = filter;
+    const clearTodos = this.todos.filter(item => item.isCompleted === false)
+    this.todos = clearTodos
+    this.selectedFilter = filter
   }
 
   @action.bound
@@ -86,7 +125,10 @@ class TodoStores  extends React.Component {
     });
     return filteredTodos;
   }
+
+  clearStore = () => {
+    this.init()
+  }
 }
 
-const todoStores  = new TodoStores(ToDoModel);
-export {todoStores,TodoStores};
+export default TodoStores;

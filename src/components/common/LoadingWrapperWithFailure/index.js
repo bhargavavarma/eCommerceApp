@@ -18,7 +18,7 @@ class LoadingWrapperWithFailure extends React.Component {
       apiError,
     } = this.props
     const errorMessage = getUserDisplayableErrorMessage(apiError)
-
+    console.log(apiStatus)
     switch (apiStatus) {
       case API_FETCHING:
         return <LoadingView />

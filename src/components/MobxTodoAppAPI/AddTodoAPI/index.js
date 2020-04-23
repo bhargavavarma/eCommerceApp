@@ -10,25 +10,24 @@ import {
 }
 from './styledComponents';
 
-@observer class AddTodo extends React.PureComponent {
+@observer class AddTodo extends React.Component {
 
   onCompleted = () => {
-    const {AddingEachTodo}=this.props
+    const {AddingEachTodo,onCompleted}=this.props
     AddingEachTodo.onCompleted()
   }
 
   onRemoveTodo = () => {
-    const {AddingEachTodo} = this.props;
-    AddingEachTodo.onRemoveTodo(AddingEachTodo.id)
+    const {AddingEachTodo,onRemoveTodo} = this.props
+    onRemoveTodo(AddingEachTodo.id)
   }
 
   onUpdateTodoTitle = (event) => {
-    this.props.AddingEachTodo.onUpdateTodoTitle(event.target.value)
+    this.props.AddingEachTodo.onUpdateTodoTitle(event.target.value);
   }
 
   render() {
     const {AddingEachTodo} = this.props;
-    console.log(this.props)
     return (
       <EachTodo>
         <CheckBox>

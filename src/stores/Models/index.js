@@ -10,19 +10,20 @@ class ToDoModel extends React.Component {
 
     constructor(todoObject) {
         super(todoObject)
-        this.id = todoObject.id;
-        this.title = todoObject.title;
-        this.isCompleted = todoObject.isCompleted;
+        this.id = todoObject.id
+        this.title = todoObject.title
+        this.isCompleted = todoObject.isCompleted
     }
 
     @action.bound
     onCompleted() {
-        this.isCompleted = !this.isCompleted;
+        this.isCompleted = !this.isCompleted
+        console.log(this.isCompleted)
     }
  
     @action.bound
     onUpdateTodoTitle(updatedTitle) {
-        this.title = updatedTitle;
+        this.title = updatedTitle
     }
 }
 

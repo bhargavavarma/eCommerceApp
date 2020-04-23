@@ -4,7 +4,7 @@ import {
   Switch,
   Route 
 } from "react-router-dom" 
-import { observer } from 'mobx-react'
+import { observer, Provider } from 'mobx-react'
 import { observable } from 'mobx'
 
 import HomePage from "./components/HomePage"
@@ -15,7 +15,7 @@ import { ToDoList } from './components/toDOList/index'
 import TodoApp from './components/mobxTodoApp/TodoApp/index'
 import TodoAppAPI from './components/MobxTodoAppAPI/TodoAppAPI/index'
 import Home from './components/home.js';
-import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp'
+//import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp'
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index'
 import CounterApp from './components/CounterApp/index'
 import EventApp from './components/EventsPage/EventsApp/index'
@@ -30,7 +30,8 @@ import { FormComponentHome } from './components/FormComponents/FormComponentHome
 //import CountryDetails from './components/Countries_Dashboard_App/CountryDetails.js'
 import CounterPage from './components/CounterPage/index'
 import themeStore from './stores/ThemeStore'
-
+import UsersPage from './components/UsersPage/index'
+import stores from './stores'
 import "./App.css"
 
 const cityList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"]
@@ -110,6 +111,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <Provider {...stores}>
       <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path='/Counter-page'>
@@ -146,6 +148,7 @@ class App extends React.Component {
           <GridMemoryGame onChangeTheme = { this.onChangeTheme } 
                selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
+        <Route exact path='/usersAPI' component = {UsersPage} />
         <Route path='/Greetings'>
           <Greetings />
         </Route>
@@ -172,6 +175,7 @@ class App extends React.Component {
         </Route>
       </Switch>
     </Router>
+    </Provider>
     );
   }
 }
