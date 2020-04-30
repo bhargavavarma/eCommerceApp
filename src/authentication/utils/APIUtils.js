@@ -1,5 +1,4 @@
 import getData from '@ib/api'
-
 import { apiMethods } from '../constants/APIConstants'
 
 export const networkCallWithApisauce = async (

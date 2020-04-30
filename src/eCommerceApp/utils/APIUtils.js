@@ -1,6 +1,5 @@
 import getData from '@ib/api'
-
-import { apiMethods } from '../constants/APIConstants'
+import { apiMethods } from '../../constants/APIConstants'
 
 export const networkCallWithApisauce = async (
   api,
@@ -11,7 +10,6 @@ export const networkCallWithApisauce = async (
   let response = null
   try {
     response = await getData(api, url, requestObject, type)
-    console.log(response)
   } catch (error) {
     throw error
   }

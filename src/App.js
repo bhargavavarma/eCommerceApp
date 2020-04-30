@@ -1,6 +1,6 @@
 import React from "react"
 import { 
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route 
 } from "react-router-dom" 
@@ -8,32 +8,34 @@ import { observer, Provider } from 'mobx-react'
 import { observable } from 'mobx'
 
 import HomePage from "./components/HomePage"
+//import HomePage from './eCommerceApp/components/HomePage/index'
 import Page1 from "./components/Page1"
-
+//import authenticationRoutes from './authentication/routes/index'
 import { CarsList } from './components/CarsList/index'
 import { ToDoList } from './components/toDOList/index'
 import TodoApp from './components/mobxTodoApp/TodoApp/index'
 import TodoAppAPI from './components/MobxTodoAppAPI/TodoAppAPI/index'
-import Home from './components/home.js';
-//import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp'
+//import Home from './components/home.js';
+import ProductHome from './eCommerceApp/components/home';
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index'
 import CounterApp from './components/CounterApp/index'
 import EventApp from './components/EventsPage/EventsApp/index'
 import GridMemoryGame from './components/GridMemoryApp/GridMemoryGame/index'
-
+import ProductsPage from './eCommerceApp/components/ProductsPage/index'
 import { Greetings } from './components/FormComponents/Greetings.js'
 import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js'
 import { VisitedCities } from './components/FormComponents/VisitedCities.js'
 import { YourState } from './components/FormComponents/YourState.js'
 import { DisableButton } from './components/FormComponents/DisableButton.js'
 import { FormComponentHome } from './components/FormComponents/FormComponentHome.js'
-//import CountryDetails from './components/Countries_Dashboard_App/CountryDetails.js'
 import CounterPage from './components/CounterPage/index'
 import themeStore from './stores/ThemeStore'
 import UsersPage from './components/UsersPage/index'
-import LoginPage from './components/LoginPage/index'
-import stores from './stores'
+//import LoginPage from './components/LoginPage/index'
+import stores from './eCommerceApp/stores'
+import AuthenticationRoutes from "./authentication/routes"
 import "./App.css"
+
 
 const cityList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"]
 const states = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"]
@@ -50,41 +52,6 @@ class App extends React.Component {
   setCurrentTheme = (theme) => {
     themeStore.setCurrentTheme(theme);
   }
-
-  // countriesDashBoard
-
-  /*themeOptions = {
-    light: {
-      id: "0",
-      color: "#fff",
-      displayText: "Dark Theme",
-      textColor: 'black',
-      cardColor: 'white',
-      background: '#ebf8ff',
-      red: "red",
-      green: "green"
-    },
-    dark: {
-      id: "1",
-      color: "#2b3945",
-      displayText: "Light Theme",
-      textColor: '#fff',
-      cardColor: ' #2b6cb0',
-      background: 'black',
-      red: "red",
-      green: "green"
-    },
-    <Route path='/CountriesDashboardApp'>
-          <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-        </Route>
-        <Route path="/:id">
-          <CountryDetails onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-        </Route>
-  }*/
-
-  // GridGame
 
   themeOptions = {
     light: {
@@ -137,7 +104,7 @@ class App extends React.Component {
         </Route>
         <Route path='/EmojiGame'>
           <EmojiGameDashboardApp onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+            selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route path='/CounterApp'>
           <CounterApp />
@@ -147,11 +114,12 @@ class App extends React.Component {
         </Route>
         <Route path='/grid-game '>
           <GridMemoryGame onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+            selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route exact path='/usersAPI' component = {UsersPage} />
-        <Route path='/loginPage'>
-          <LoginPage />
+        {AuthenticationRoutes}
+        <Route path='/ecommerce-store/products'>
+          <ProductsPage />
         </Route>
         <Route path='/Greetings'>
           <Greetings />
@@ -168,8 +136,8 @@ class App extends React.Component {
         <Route path='/DisableButton'>
           <DisableButton />
         </Route>
-        <Route path='/'>
-          <Home />
+        <Route path='/eCommerceApp/'>
+          <ProductHome />
         </Route>
         <Route exact path="/page-1">
           <Page1 />
@@ -185,3 +153,41 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+//import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp'
+//import CountryDetails from './components/Countries_Dashboard_App/CountryDetails.js'
+
+// countriesDashBoard
+
+  /*themeOptions = {
+    light: {
+      id: "0",
+      color: "#fff",
+      displayText: "Dark Theme",
+      textColor: 'black',
+      cardColor: 'white',
+      background: '#ebf8ff',
+      red: "red",
+      green: "green"
+    },
+    dark: {
+      id: "1",
+      color: "#2b3945",
+      displayText: "Light Theme",
+      textColor: '#fff',
+      cardColor: ' #2b6cb0',
+      background: 'black',
+      red: "red",
+      green: "green"
+    },
+    <Route path='/CountriesDashboardApp'>
+      <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
+        selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+        </Route>
+        <Route path="/:id">
+          <CountryDetails onChangeTheme = { this.onChangeTheme } 
+          selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+        </Route>
+  }*/
+

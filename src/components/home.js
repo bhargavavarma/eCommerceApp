@@ -3,20 +3,20 @@ import { Link, Redirect } from "react-router-dom"
 
 class Home extends React.Component {
 
-  gotoGridScreenIfLoggedIn = () => {
-    return (
-      <Redirect 
-        to={{
-          pathname: '/loginPage',
-        }}
-      />
-    )
-  }
+  // gotoGridScreenIfLoggedIn = () => {
+  //   return (
+  //     <Redirect 
+  //       to={{
+  //         pathname: '/loginPage',
+  //       }}
+  //     />
+  //   )
+  // }
 
   render() {
-    if(true) {
-      return this.gotoGridScreenIfLoggedIn()
-    }
+    // if(true) {
+    //   return this.gotoGridScreenIfLoggedIn()
+    // }
     return (
       <div>
         <nav>
