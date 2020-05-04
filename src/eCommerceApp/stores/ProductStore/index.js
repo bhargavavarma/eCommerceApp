@@ -42,7 +42,6 @@ class ProductStore {
 
   @action.bound
   setGetProductListAPIError(error) {
-    console.log('error',error)
     this.getProductListAPIError = error
   }
 

@@ -1,21 +1,23 @@
-import React from 'react'
-import {withRouter} from 'react-router-dom'
-import { observer, inject } from 'mobx-react'
-import CookieConsent from "react-cookie-consent"
-import LoadingWrapperWithFailure from "../../../common/LoadingWrapperWithFailure"
-import store from '../../stores/index'
-import Header from '../Header/index'
-import ProductList from '../ProductList/index'
-import SizeFilter from '../SizeFilter/index'
-import ProductCart from "../ProductCart"
+import React from 'react';
+import {withRouter} from 'react-router-dom';
+import { observer, inject } from 'mobx-react';
+import { action } from "mobx";
+import CookieConsent from "react-cookie-consent";
+
+import AuthStore from '../../../authentication/stores/AuthStore/AuthStore';
+import LoadingWrapperWithFailure from "../../../common/LoadingWrapperWithFailure";
+import store from '../../stores/index';
+import Header from '../Header/index';
+import ProductList from '../ProductList/index';
+import SizeFilter from '../SizeFilter/index';
+import ProductCart from "../ProductCart";
 
 import {
   Wrapper,
   SignOutButton,
   DislayProducts,
   RenderProductList,
-} from './styledComponent'
-import { action } from "mobx"
+} from './styledComponent';
 
 const productStore = store.productStore
 
@@ -57,12 +59,12 @@ class ProductsPage extends React.Component {
     )
   }
 
-  cartClick
-  ed = () => {
+  cartClicked = () => {
     this.isClicked = !this.isClicked
   }
 
   handleSignout = () => {
+    AuthStore.clearUserSession
     const {history} = this.props
     history.replace({pathname:'/ecommerce-store/sign-in'})
   }

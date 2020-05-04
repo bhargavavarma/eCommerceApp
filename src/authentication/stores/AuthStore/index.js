@@ -1,6 +1,6 @@
 import AuthStore from './AuthStore'
-import AuthService from '../../services/AuthService/AuthApi'
+import AuthAPI from '../../services/AuthService/AuthAPI'
 
-const authService = new AuthService()
-const authStore = new AuthStore(authService)
+const authAPI = new AuthAPI()
+const authStore = new AuthStore(authAPI)
 export default authStore

@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
-import { observer, inject } from "mobx-react"
-import { action } from "mobx"
+import React, { Component } from 'react';
+import { observer } from "mobx-react";
+import { action } from "mobx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import store from '../../stores/index'
-import Tostify from '../../Tostify'
+
+import store from '../../stores/index';
+import Tostify from '../../Tostify';
+
 import {
   EachProductToDisplay,
   FreeShipping,
@@ -17,10 +19,10 @@ import {
   Button,
   IntegerSpan,
   DecimalSpan
-} from './styledComponent'
+} from './styledComponent';
 
 const cartStore = store.cartStore
-@inject('cartStore')
+
 @observer
 class Product extends Component {
 
@@ -48,7 +50,7 @@ class Product extends Component {
         <FreeShipping isFreeShipping={isFreeShipping}>
           {isFreeShipping ? 'Free shipping' : ''}
         </FreeShipping>
-        <Title>{title}</Title>
+        <Title data-testid='title'>{title}</Title>
         <Currency>
           <CurrencyFormat>
             {currencyFormat}

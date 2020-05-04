@@ -1,31 +1,57 @@
-import { observable, action } from 'mobx'
-import { API_INITIAL } from '@ib/api-constants'
-import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
+import { observable, action } from 'mobx';
+
+import { API_INITIAL } from '@ib/api-constants';
+import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
+
+import { setAccessToken, clearUserSession } from '../../utils/StorageUtils';
 import Cookie from 'js-cookie'
 
 class AuthStore {
-  
+  authAPIService;
+  //@observable getUserSignInAPIStatus;
+  //@observable getUserSignInAPIError;
   @observable getAccessTokenApiStatus
   @observable getApiError
   @observable access_token
-  authService
 
-  constructor(authService) {
-    this.authService = authService
+  constructor(authAPIService) {
+    this.authAPIService = authAPIService;
     this.init()
   }
 
   @action.bound
   init() {
+    //this.getUserSignInAPIStatus = API_INITIAL;
+    //this.getUserSignInAPIError = null;
     this.getAccessTokenApiStatus = API_INITIAL
     this.getApiError = null
     this.access_token = undefined
   }
 
+  // @action.bound
+  // setGetUserSignInAPIStatus(status) {
+  //   this.getUserSignInAPIStatus = status;
+  // }
+
   @action.bound
   setAccessTokenAPIStatus(apiStatus) {
     this.getAccessTokenApiStatus = apiStatus
   }
+
+  // @action.bound
+  // setGetUserSignInAPIError(error) {
+  //   this.getUserSignInAPIError = error;
+  // }
+
+  @action.bound
+  setAccessTokenError(error) {
+    this.getApiError = error
+  }
+
+  // @action.bound
+  // setUserSignInAPIResponse(response) {
+  //   setAccessToken(response.length > 0 && response[0].access_token);
+  // }
 
   @action.bound
   setAccessTokenResponse(response) {
@@ -33,14 +59,23 @@ class AuthStore {
       this.setAccessToken(object.access_token,object.access_token))
   }
 
-  @action.bound
-  setAccessTokenError(error) {
-    this.getApiError = error
-  }
+  // @action.bound
+  // userSignIn(request, onSuccess, onFailure) {
+  //   const userSignInAPIPromise = this.authAPIService.signInAPI(request);
+  //   return bindPromiseWithOnSuccess(userSignInAPIPromise)
+  //     .to(this.setGetUserSignInAPIStatus, (response) => {
+  //       this.setUserSignInAPIResponse(response);
+  //       onSuccess();
+  //     })
+  //     .catch((error) => {
+  //       this.setGetUserSignInAPIError(error);
+  //       onFailure();
+  //     });
+  // }
 
   @action.bound
   getAccessTokenApi() {
-    const tokenPromise = this.authService.signInAPI()
+    const tokenPromise = this.authAPIService.signInAPI()
     return bindPromiseWithOnSuccess(tokenPromise)
     .to(this.setAccessTokenAPIStatus,this.setAccessTokenResponse)
     .catch(this.getApiError)
@@ -66,11 +101,20 @@ class AuthStore {
     return Cookie.get(key)
   }
 
+  @action.bound
+  userSignOut() {
+    
+    clearUserSession();
+    this.init();
+  }
+
   clearUserSession(Access_token) {
+    alert('bhargav')
     Cookie.remove(Access_token, {path: '/'})
   }
 
   clearStore = () => {
+    alert('store')
     this.init()
   }
 }
