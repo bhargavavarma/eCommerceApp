@@ -21,7 +21,8 @@ import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/
 import CounterApp from './components/CounterApp/index'
 import EventApp from './components/EventsPage/EventsApp/index'
 import GridMemoryGame from './components/GridMemoryApp/GridMemoryGame/index'
-import ProductsPage from './eCommerceApp/components/ProductsPage/index'
+import ProductPageRoute from './eCommerceApp/routes/ProductPageRoute'
+// import ProductPage from './eCommerceApp/components/ProductsPage'
 import { Greetings } from './components/FormComponents/Greetings.js'
 import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js'
 import { VisitedCities } from './components/FormComponents/VisitedCities.js'
@@ -119,7 +120,7 @@ class App extends React.Component {
         <Route exact path='/usersAPI' component = {UsersPage} />
         {AuthenticationRoutes}
         <Route path='/ecommerce-store/products'>
-          <ProductsPage />
+          <ProductPageRoute />
         </Route>
         <Route path='/Greetings'>
           <Greetings />

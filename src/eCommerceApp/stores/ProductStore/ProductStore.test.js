@@ -7,6 +7,7 @@ import {
 import getProductsResponse from '../../fixtures/getProductsResponse.json';
 import ProductStore from '.';
 import ProductService from '../../services/ProductService/index.api';
+import {ascendingList,descendingList} from '../../utils/ProductSorting'
 
 describe('Product Store tests', () => {
   let productService;
@@ -20,6 +21,9 @@ describe('Product Store tests', () => {
   it("should test initialising product store", () => {
     expect(productStore.getProductListAPIStatus).toBe(API_INITIAL);
     expect(productStore.getProductListAPIError).toBe(null);
+    expect(productStore.productList.length).toBe(0);
+    expect(productStore.sizeFilter.length).toBe(0);
+    expect(productStore.sortBy).toEqual('SELECT');
   });
   
   it("should test getProductAPI data fetching state", () => {
@@ -82,5 +86,66 @@ describe('Product Store tests', () => {
     productStore.clearStore();
     expect(productStore.getProductListAPIStatus).toBe(API_INITIAL);
     expect(productStore.getProductListAPIError).toBe(null);
+  });
+
+  it("should get initial sorted filtered products list", () => {
+    productStore.sizeFilter = []
+    productStore.productList = getProductsResponse
+    let filteredProducts = productStore.sortedAndFilteredProducts
+    expect(filteredProducts.length).toBe(16)
+  });
+
+  it("should get M size sorted filtered products list", () => {
+    productStore.sizeFilter = ['M']
+    productStore.productList = getProductsResponse
+    let filteredProducts = productStore.sortedAndFilteredProducts
+    expect(filteredProducts.length).toBe(5)
+  });
+
+  it("should get S size sorted filtered products list", () => {
+    productStore.sizeFilter = ['S']
+    productStore.productList = getProductsResponse
+    let filteredProducts = productStore.sortedAndFilteredProducts
+    expect(filteredProducts.length).toBe(4)
+  });
+
+  it("should get XS size sorted filtered products list", () => {
+    productStore.sizeFilter = ['XS']
+    productStore.productList = getProductsResponse
+    let filteredProducts = productStore.sortedAndFilteredProducts
+    expect(filteredProducts.length).toBe(2)
+  });
+
+  it("should get L size sorted filtered products list", () => {
+    productStore.sizeFilter = ['L']
+    productStore.productList = getProductsResponse
+    let filteredProducts = productStore.sortedAndFilteredProducts
+    expect(filteredProducts.length).toBe(10)
+  });
+
+  it("should get XL size sorted filtered products list", () => {
+    productStore.sizeFilter = ['XL']
+    productStore.productList = getProductsResponse
+    let filteredProducts = productStore.sortedAndFilteredProducts
+    expect(filteredProducts.length).toBe(10)
+  });
+
+  it("should get XXL size sorted filtered products list", () => {
+    productStore.sizeFilter = ['XXL']
+    productStore.productList = getProductsResponse
+    let filteredProducts = productStore.sortedAndFilteredProducts
+    expect(filteredProducts.length).toBe(5)
+  });
+
+  it("should get ASCENDING sorted products list", () => {
+    productStore.sortBy = 'ASCENDING'
+    productStore.productList = getProductsResponse
+    expect(productStore.sortedProduct).toStrictEqual(ascendingList)
+  });
+
+  it("should get DESCENDING sorted products list", () => {
+    productStore.sortBy = 'DESCENDING'
+    productStore.productList = getProductsResponse
+    expect(productStore.sortedProduct).toStrictEqual(descendingList)
   });
 })

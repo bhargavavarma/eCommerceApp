@@ -50,7 +50,7 @@ class Product extends Component {
         <FreeShipping isFreeShipping={isFreeShipping}>
           {isFreeShipping ? 'Free shipping' : ''}
         </FreeShipping>
-        <Title data-testid='title'>{title}</Title>
+        <Title>{title}</Title>
         <Currency>
           <CurrencyFormat>
             {currencyFormat}

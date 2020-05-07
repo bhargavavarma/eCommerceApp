@@ -1,12 +1,8 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { action } from "mobx";
 import CookieConsent from "react-cookie-consent";
-
-import AuthStore from '../../../authentication/stores/AuthStore/AuthStore';
 import LoadingWrapperWithFailure from "../../../common/LoadingWrapperWithFailure";
-import store from '../../stores/index';
 import Header from '../Header/index';
 import ProductList from '../ProductList/index';
 import SizeFilter from '../SizeFilter/index';
@@ -19,62 +15,38 @@ import {
   RenderProductList,
 } from './styledComponent';
 
-const productStore = store.productStore
-
-@inject('productStore')
 @observer
 class ProductsPage extends React.Component {
 
-  componentDidMount() {
-    this.doNetworkCalls()
-  }
-
-  componentWillUnmount() {
-    productStore.clearStore()
-  }
-  
-  doNetworkCalls = () => {
-    productStore.getProductAPI()
-  }
-
   renderProductList = observer(() => {
     return(
-      <ProductList store={productStore}
-      sortBy={productStore.sortBy}/>
+      <ProductList key={Math.random()} store={this.props.productStore}
+      sortBy={this.props.productStore.sortBy}/>
     )
   })
 
   @action.bound
   renderSizeFilter() {
     return (
-      <SizeFilter store={productStore}
-      selectedSize={productStore.onSelectSize} />
+      <SizeFilter store={this.props.productStore}
+      selectedSize={this.props.productStore.onSelectSize} />
     )
   }
 
   renderHeader = () => {
     return(
-      <Header store={productStore}
-      onselectedChange={productStore.onselectedChange}/>
+      <Header store={this.props.productStore}
+      onselectedChange={this.props.productStore.onselectedChange}/>
     )
-  }
-
-  cartClicked = () => {
-    this.isClicked = !this.isClicked
-  }
-
-  handleSignout = () => {
-    AuthStore.clearUserSession
-    const {history} = this.props
-    history.replace({pathname:'/ecommerce-store/sign-in'})
   }
 
   render() {
     const { getProductListAPIStatus,
-      getProductListAPIError } = productStore
+      getProductListAPIError,
+       } = this.props.productStore
     return ( 
-      <Wrapper>
-        <SignOutButton data-testid='sign-out-button' onClick={this.handleSignout}>
+      <Wrapper data-testid='product-page-render'>
+        <SignOutButton data-testid='sign-out-button' onClick={this.props.handleSignout}>
           Sign out
         </SignOutButton>
         <ProductCart />
@@ -89,7 +61,7 @@ class ProductsPage extends React.Component {
               renderSuccessUI = {this.renderProductList} />
           </RenderProductList>
         </DislayProducts>
-        <CookieConsent location="bottom" buttonText="Got it"
+        <CookieConsent location="bottom" buttonText="Got it" 
           cookieName="myAwesomeCookieName2"
           style={{ background: "#2B373B" }}  
           buttonStyle={{ color: "#4e503b", fontSize: "12px" }}
@@ -103,4 +75,4 @@ class ProductsPage extends React.Component {
   }
 }
 
-export default withRouter(ProductsPage);
+export default ProductsPage;

@@ -12,18 +12,17 @@ import {
 class ProductList extends Component {
 
   render() {
-    const {store} = this.props
     const {
       totalNoOfProductsDisplayed,
-      sortedProduct} = store
+      sortedProduct} = this.props.store
     return ( 
       <DisplayProductsList>
         {totalNoOfProductsDisplayed !== 0 ?
-        <DisplayProducts>
+        <DisplayProducts data-testid='display-each-product'>
           {sortedProduct.map((EachProduct)=>
             <Product key={EachProduct.productId} eachProduct={EachProduct}/>
         )}
-        </DisplayProducts> : <NoDataView />}
+        </DisplayProducts> : <NoDataView/>}
       </DisplayProductsList>
     );
   }

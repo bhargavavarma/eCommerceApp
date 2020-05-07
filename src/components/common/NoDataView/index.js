@@ -5,7 +5,7 @@ import { NoDataViewContainer, NoDataViewText } from "./styledComponents";
 class NoDataView extends React.Component {
   render() {
     return (
-      <NoDataViewContainer>
+      <NoDataViewContainer data-testid='display-noDataView'>
         <NoDataViewText>No data found!</NoDataViewText>
       </NoDataViewContainer>
     );

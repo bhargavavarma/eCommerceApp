@@ -1,5 +1,5 @@
 import { observable, action, computed } from 'mobx'
-import { API_INITIAL } from '@ib/api-constants'
+import { API_INITIAL, API_SUCCESS } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import Product from '../Models/Product'
 
@@ -30,7 +30,7 @@ class ProductStore {
   getProductAPI() {
     const productPromise = this.productsAPIService.getProductsAPI()
     return bindPromiseWithOnSuccess(productPromise)
-    .to(this.setGetProductListAPIStatus,this.setProductListResponse)
+    .to(this.setGetProductListAPIStatus,(response)=>this.setProductListResponse(response))
     .catch(this.setGetProductListAPIError)
   }
 
@@ -67,10 +67,10 @@ class ProductStore {
     this.sortBy = sortBy
   }
 
-  @action.bound
-  getSearchProduct(userInput) {
-    console.log(userInput)
-  }
+  // @action.bound
+  // getSearchProduct(userInput) {
+  //   console.log(userInput)
+  // }
 
   @computed get sortedProduct() {
     let selectedOption = this.sortBy
