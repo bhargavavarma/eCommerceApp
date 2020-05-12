@@ -1,18 +1,21 @@
-import React from "react";
+import React from "react"
+import {
+  HashRouter as Router,
+  Switch,
+  Route
+}
+from "react-router-dom"
+import { observer, Provider } from 'mobx-react'
+import { observable } from 'mobx'
 
-import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import "./App.css";
-
-import HomePage from "./components/HomePage";
-import Page1 from "./components/Page1";
-
-import { CarsList } from './components/CarsList/index';
-import { ToDoList } from './components/toDOList/index';
-import TodoApp from './components/mobxTodoApp/TodoApp/index';
+// import HomePage from "./components/HomePage"
+//import HomePage from './eCommerceApp/components/HomePage/index'
+import Page1 from "./components/Page1"
+//import authenticationRoutes from './authentication/routes/index'
+import { CarsList } from './components/CarsList/index'
+import { ToDoList } from './components/toDOList/index'
+import TodoApp from './components/mobxTodoApp/TodoApp/index'
+import TodoAppAPI from './components/MobxTodoAppAPI/TodoAppAPI/index'
 import Home from './components/home.js';
 import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp';
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index';
@@ -31,6 +34,19 @@ const cityList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"
 const states = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"];
 
 import themeStore from './stores/ThemeStore';
+import ProductHome from './eCommerceApp/components/home';
+
+import EventApp from './components/EventsPage/EventsApp/index'
+import GridMemoryGame from './components/GridMemoryApp/GridMemoryGame/index'
+// import ProductPageRoute from './eCommerceApp/routes/ProductPageRoute/ProductPageRoute'
+// import ProductPage from './eCommerceApp/components/ProductsPage'
+import UsersPage from './components/UsersPage/index'
+//import LoginPage from './components/LoginPage/index'
+import stores from './eCommerceApp/stores'
+import authStore from './authentication/stores'
+import AuthenticationRoutes from "./authentication/routes"
+import "./App.css"
+import { ProductRoutes } from "./eCommerceApp/routes"
 
 @observer
 class App extends React.Component {
@@ -48,45 +64,34 @@ class App extends React.Component {
   themeOptions = {
     light: {
       id: "0",
+      displayText: 'Dark Mode',
       color: "#fff",
-      displayText: "Dark Theme",
       textColor: 'black',
-      cardColor: 'white',
-      background: '#ebf8ff',
-      red: "red",
-      green: "green"
     },
     dark: {
       id: "1",
+      displayText: 'Light Mode',
       color: "#2b3945",
-      displayText: "Light Theme",
-      textColor: '#fff',
-      cardColor: ' #2b6cb0',
-      background: 'black',
-      red: "red",
-      green: "green"
+      textColor: 'white',
     },
   }
 
-  /*state = {
-    selectedTheme: 'light',
-  }*/
-
   onChangeTheme = () => {
     if (this.getCurrentTheme() === 'light') {
-      //this.setState({ selectedTheme: 'dark' });
       this.setCurrentTheme('dark');
     }
     else {
-      //this.setState({ selectedTheme: 'light' });
       this.setCurrentTheme('light');
     }
   }
 
   render() {
     return (
+      <Provider {...stores} {...authStore}>
       <Router basename={process.env.PUBLIC_URL}>
       <Switch>
+        {AuthenticationRoutes}
+        <Route path='/ProductPage' component={ProductRoutes}/>
         <Route path='/Counter-page'>
           <CounterPage />
         </Route>
@@ -101,16 +106,15 @@ class App extends React.Component {
         <Route path='/mobx-todo-app'>
             <TodoApp />
         </Route>
+        <Route path='/mobx-todo-app-API'>
+            <TodoAppAPI />
+        </Route>
         <Route path='/FormComponents'>
           <FormComponentHome />
         </Route>
-        <Route path='/CountriesDashboardApp'>
-          <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-        </Route>
         <Route path='/EmojiGame'>
           <EmojiGameDashboardApp onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+            selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route path='/CounterApp'>
           <CounterApp />
@@ -118,6 +122,14 @@ class App extends React.Component {
         <Route path='/Mcqs'>
           <Mcq />
         </Route>
+        <Route path='/events-app'>
+          <EventApp />
+        </Route>
+        <Route path='/grid-game '>
+          <GridMemoryGame onChangeTheme = { this.onChangeTheme } 
+            selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+        </Route>
+        <Route exact path='/usersAPI' component = {UsersPage} />
         <Route path='/Greetings'>
           <Greetings />
         </Route>
@@ -133,23 +145,57 @@ class App extends React.Component {
         <Route path='/DisableButton'>
           <DisableButton />
         </Route>
-        <Route path="/:id">
-          <CountryDetails onChangeTheme = { this.onChangeTheme } 
-               selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-        </Route>
-        <Route path='/'>
-          <Home />
+        <Route path='/eCommerceApp/'>
+          <ProductHome />
         </Route>
         <Route exact path="/page-1">
           <Page1 />
         </Route>
         <Route path="/">
-          <HomePage />
+          <Home />
         </Route>
       </Switch>
     </Router>
+    </Provider>
     );
   }
 }
 
 export default App;
+
+
+//import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp'
+//import CountryDetails from './components/Countries_Dashboard_App/CountryDetails.js'
+
+// countriesDashBoard
+
+/*themeOptions = {
+  light: {
+    id: "0",
+    color: "#fff",
+    displayText: "Dark Theme",
+    textColor: 'black',
+    cardColor: 'white',
+    background: '#ebf8ff',
+    red: "red",
+    green: "green"
+  },
+  dark: {
+    id: "1",
+    color: "#2b3945",
+    displayText: "Light Theme",
+    textColor: '#fff',
+    cardColor: ' #2b6cb0',
+    background: 'black',
+    red: "red",
+    green: "green"
+  },
+  <Route path='/CountriesDashboardApp'>
+    <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
+      selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+      </Route>
+      <Route path="/:id">
+        <CountryDetails onChangeTheme = { this.onChangeTheme } 
+        selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+      </Route>
+}*/

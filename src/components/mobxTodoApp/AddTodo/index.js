@@ -1,6 +1,8 @@
 import React from 'react';
-
 import { observer } from 'mobx-react';
+
+import {todoStores} from '../../../stores/TodoStore/index';
+
 import {
     EachTodo,
     CheckBox,
@@ -13,28 +15,33 @@ from './styledComponents';
 @observer
 class AddTodo extends React.PureComponent {
 
-    onCompleteTodo = () => {
-        this.props.onCompleteTodo(this.props.AddingEachTodo.id);
+    onCompleted = () => {
+        this.props.AddingEachTodo.onCompleted();
     }
 
     onRemoveTodo = () => {
-        this.props.onRemoveTodo(this.props.AddingEachTodo.id);
+        const {AddingEachTodo} = this.props;
+        todoStores.onRemoveTodo(AddingEachTodo.id);
+    }
+
+    onUpdateTodoTitle = (event) => {
+        this.props.AddingEachTodo.onUpdateTodoTitle(event.target.value);
     }
 
     render() {
+        const {AddingEachTodo} = this.props;
         return (
             <EachTodo>
                 <CheckBox>
-                    <CheckBoxInput id={this.props.AddingEachTodo.id} type="checkbox" onChange={this.onCompleteTodo}
-                            checked={this.props.AddingEachTodo.isCompleted}>
+                    <CheckBoxInput type="checkbox" 
+                                onChange={this.onCompleted} isCompleted={AddingEachTodo.isCompleted}>
                     </CheckBoxInput>
                 </CheckBox>
-                    <DisplayTitle id={this.props.AddingEachTodo.id}  checked={this.props.AddingEachTodo.isCompleted}
-                        defaultValue={this.props.title}>
+                    <DisplayTitle isCompleted={AddingEachTodo.isCompleted}
+                        defaultValue={AddingEachTodo.title} onChange={this.onUpdateTodoTitle}>
                     </DisplayTitle>
                 <RemoveTodo>
-                    <button
-                        onClick={this.onRemoveTodo}>&#x2717;</button>
+                    <button onClick={this.onRemoveTodo}>&#x2717;</button>
                 </RemoveTodo>
             </EachTodo>
         );

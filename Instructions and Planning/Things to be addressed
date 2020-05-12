@@ -1,0 +1,61 @@
+// step-1,2,3
+
+1. create GridGameApp
+    - props
+        - GridThemeStore
+        - listOfBlockIds
+    - header
+    - DisplayBlocksList
+2. create DisplayBlocksList
+    - props
+        - listOfBlockIds
+    - renderingblocks()
+3. create GridGameStores
+    - properties
+        - id
+        - topLevel @observable
+        - level @observable
+        - listOfBlocks = [] @observable
+    - props
+        - GridGameModel
+        - userSelectedBlockId
+    - addingEachBlockToList()
+    - shufflingBlocks()
+    - randomGenerator()
+    - DisplayBlocksList()
+    - reset()
+4. create GridGameModel 
+    - properties
+        - id
+        - topLevel @observable
+        - level @observable
+    - state // constructor
+5. create GridGameStore
+
+themeOptions
+- darkMode
+    - bodyBackgroundColor - 
+    - textColor - white
+    - unselectBlockColor - 
+    - selectBloackColor - 
+    - userWrongSelect - red
+- lightMode
+    - bodyBackgroundColor - white
+    - textColor - black
+    - unselectBlockColor - 
+    - selectBloackColor - 
+    - userWrongSelect - red
+6. create Header
+    - topLevel
+    - level and theme
+
+problem statement
+
+- maintain top level
+- level should be increased if user selects all the correct blocks.
+- for each level row and column should increase by 1. // max level is 7.
+- random of 3 blocks should select initially and it should increase by 1 for each level.
+- time should be calculated for each level like (3*2).
+- if user didnot press all the blocks in time game should be reset automatically.// not top level
+- if user completes all the 7 levels greeting should be displayed and ask play again.
+- when user clicks play again all the things should reset from first. // max level should be same.
