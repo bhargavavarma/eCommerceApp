@@ -31,6 +31,9 @@ class Home extends React.Component {
                         <li>
                             <Link to="/CounterApp">7.Counter App</Link>
                         </li>
+                        <li>
+                            <Link to="/Mcqs">8. Mcq</Link>
+                        </li>
                     </ul>
                 </nav> 
             </div>

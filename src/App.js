@@ -16,8 +16,8 @@ import TodoApp from './components/mobxTodoApp/TodoApp/index';
 import Home from './components/home.js';
 import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp';
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index';
+import Mcq from './components/McqPractice/mcq'
 import CounterApp from './components/CounterApp/index';
-
 import { Greetings } from './components/FormComponents/Greetings.js';
 import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js';
 import { VisitedCities } from './components/FormComponents/VisitedCities.js';
@@ -114,6 +114,9 @@ class App extends React.Component {
         </Route>
         <Route path='/CounterApp'>
           <CounterApp />
+        </Route>
+        <Route path='/Mcqs'>
+          <Mcq />
         </Route>
         <Route path='/Greetings'>
           <Greetings />
