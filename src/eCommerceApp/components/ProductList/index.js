@@ -22,7 +22,7 @@ class ProductList extends Component {
           {sortedProduct.map((EachProduct)=>
             <Product key={EachProduct.productId} eachProduct={EachProduct}/>
         )}
-        </DisplayProducts> : <NoDataView/>}
+        </DisplayProducts> : <NoDataView />}  
       </DisplayProductsList>
     );
   }

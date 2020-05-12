@@ -78,7 +78,13 @@
   "jest": {
     "testEnvironment": "node",
     "collectCoverageFrom": [
-      "src/*.{ts,tsx,js,jsx}"
+      "src/eCommerceApp.{ts,tsx,js,jsx}",
+      "src/authentts/**/*.{ts,tsx,js,jsx}",
+      "!src/stores/**/*ication.{ts,tsx,js,jsx}",
+      "!src/componen.{ts,tsx,js,jsx}",
+      "!src/services/**/*.{ts,tsx,js,jsx}",
+      "!src/utils/**/*.{ts,tsx,js,jsx}",
+      "!src/common/**/*.{ts,tsx,js,jsx}"
     ]
   }
 }

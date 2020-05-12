@@ -14,7 +14,7 @@ const Select = styled.select `
   `}
 `;
 
-const TotalCount = styled.div `
+const TotalCount = styled.span `
   ${tw`
   
   `}

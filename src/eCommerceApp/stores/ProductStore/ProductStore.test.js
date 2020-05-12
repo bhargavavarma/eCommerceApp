@@ -148,4 +148,11 @@ describe('Product Store tests', () => {
     productStore.productList = getProductsResponse
     expect(productStore.sortedProduct).toStrictEqual(descendingList)
   });
+
+  it("should get Searched product list", () => {
+    productStore.sizeFilter = ['XS','L']
+    productStore.searchedProduct = 'Cat Tee Black T-Shirt'
+    productStore.productList = getProductsResponse
+    expect(productStore.sortedProduct.length).toBe(2)
+  });
 })

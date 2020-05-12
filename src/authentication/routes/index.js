@@ -1,12 +1,9 @@
-import React from 'react'
-import {Route} from 'react-router-dom'
+import React from 'react';
+import {Route} from 'react-router-dom';
+import SignInRoute from "./SignInRoute";
+import {SIGN_IN_PATH} from '../constants/RoutePath';
 
-import SignInPage from '../Components/SignInPage'
+const authenticationRoutes = 
+  <Route exact path={SIGN_IN_PATH} component={SignInRoute} />;
 
-const authenticationRoutes = [
-  <Route path='/ecommerce-store/sign-in'>
-    <SignInPage />
-  </Route>
-]
-
-export default authenticationRoutes
+export default authenticationRoutes;

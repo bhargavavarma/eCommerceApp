@@ -3,20 +3,8 @@ import { Link, Redirect } from "react-router-dom"
 
 class Home extends React.Component {
 
-  // gotoGridScreenIfLoggedIn = () => {
-  //   return (
-  //     <Redirect 
-  //       to={{
-  //         pathname: '/loginPage',
-  //       }}
-  //     />
-  //   )
-  // }
-
   render() {
-    // if(true) {
-    //   return this.gotoGridScreenIfLoggedIn()
-    // }
+    
     return (
       <div>
         <nav>
@@ -59,6 +47,9 @@ class Home extends React.Component {
             </li>
             <li>
               <Link to="/loginPage">13.Login Page</Link>
+            </li>
+            <li>
+              <Link to="/ProductPage">14.E-Commerce App</Link> 
             </li>
           </ul>
         </nav> 

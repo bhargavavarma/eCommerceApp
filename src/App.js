@@ -7,7 +7,7 @@ import {
 import { observer, Provider } from 'mobx-react'
 import { observable } from 'mobx'
 
-import HomePage from "./components/HomePage"
+// import HomePage from "./components/HomePage"
 //import HomePage from './eCommerceApp/components/HomePage/index'
 import Page1 from "./components/Page1"
 //import authenticationRoutes from './authentication/routes/index'
@@ -15,13 +15,13 @@ import { CarsList } from './components/CarsList/index'
 import { ToDoList } from './components/toDOList/index'
 import TodoApp from './components/mobxTodoApp/TodoApp/index'
 import TodoAppAPI from './components/MobxTodoAppAPI/TodoAppAPI/index'
-//import Home from './components/home.js';
+import Home from './components/home.js';
 import ProductHome from './eCommerceApp/components/home';
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index'
 import CounterApp from './components/CounterApp/index'
 import EventApp from './components/EventsPage/EventsApp/index'
 import GridMemoryGame from './components/GridMemoryApp/GridMemoryGame/index'
-import ProductPageRoute from './eCommerceApp/routes/ProductPageRoute'
+// import ProductPageRoute from './eCommerceApp/routes/ProductPageRoute/ProductPageRoute'
 // import ProductPage from './eCommerceApp/components/ProductsPage'
 import { Greetings } from './components/FormComponents/Greetings.js'
 import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js'
@@ -34,8 +34,10 @@ import themeStore from './stores/ThemeStore'
 import UsersPage from './components/UsersPage/index'
 //import LoginPage from './components/LoginPage/index'
 import stores from './eCommerceApp/stores'
+import authStore from './authentication/stores'
 import AuthenticationRoutes from "./authentication/routes"
 import "./App.css"
+import {ProductRoutes} from "./eCommerceApp/routes"
 
 
 const cityList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"]
@@ -80,9 +82,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <Provider {...stores}>
+      <Provider {...stores} {...authStore}>
       <Router basename={process.env.PUBLIC_URL}>
       <Switch>
+        {AuthenticationRoutes}
+        <Route path='/ProductPage' component={ProductRoutes}/>
         <Route path='/Counter-page'>
           <CounterPage />
         </Route>
@@ -118,10 +122,6 @@ class App extends React.Component {
             selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
         </Route>
         <Route exact path='/usersAPI' component = {UsersPage} />
-        {AuthenticationRoutes}
-        <Route path='/ecommerce-store/products'>
-          <ProductPageRoute />
-        </Route>
         <Route path='/Greetings'>
           <Greetings />
         </Route>
@@ -144,7 +144,7 @@ class App extends React.Component {
           <Page1 />
         </Route>
         <Route path="/">
-          <HomePage />
+          <Home />
         </Route>
       </Switch>
     </Router>

@@ -1,2 +1,2 @@
-import SignInPage from './SignInPage'
-export default SignInPage
+import SignInForm from './SignInPage'
+export default SignInForm

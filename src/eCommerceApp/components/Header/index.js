@@ -27,16 +27,16 @@ class Header extends Component {
   render() {
     const {store} = this.props
     return ( 
-      <HeaderPart>
-        <TotalCount>{store.totalNoOfProductsDisplayed} product(s) found.</TotalCount>
-        <SearchBox>
+      <HeaderPart data-testid='header-render'>
+        <TotalCount data-testid='total-products'>{store.totalNoOfProductsDisplayed} product(s) found.</TotalCount>
+        <SearchBox data-testid='searched-products'>
           <IoMdSearch size={24}/>
           <SearchProduct type='text'
             onChange={this.getSearchProduct}
             placeholder='Search for a product...'/>
         </SearchBox>
-        <Sort>
-          <label>Sort price by: </label>
+        <Sort data-testid='sorted-products'>
+          <label data-testid='sort-price-by-text'>Sort price by: </label>
           <Select defaultValue='Select' onChange={this.handleChange}>
             <option value="DESCENDING">Highest to lowest</option>
             <option value="ASCENDING">Lowest to highest</option>

@@ -10,6 +10,7 @@ class ProductStore {
   @observable getProductListAPIError
   @observable sizeFilter
   @observable sortBy
+  @observable searchedProduct
   productsAPIService
 
   constructor(productsAPIService) {
@@ -24,6 +25,7 @@ class ProductStore {
     this.getProductListAPIError = null
     this.sizeFilter = []
     this.sortBy = "SELECT"
+    this.searchedProduct = ''
   }
 
   @action.bound
@@ -67,10 +69,10 @@ class ProductStore {
     this.sortBy = sortBy
   }
 
-  // @action.bound
-  // getSearchProduct(userInput) {
-  //   console.log(userInput)
-  // }
+  @action.bound
+  getSearchProduct(userInput) {
+    this.searchedProduct = userInput
+  }
 
   @computed get sortedProduct() {
     let selectedOption = this.sortBy
@@ -92,13 +94,14 @@ class ProductStore {
 
   @computed get sortedAndFilteredProducts() {
     let selectedSizes = this.sizeFilter
+    let searchedProduct = this.searchedProduct
     let filteredProducts = this.productList.filter(function(eachProduct) {
       if(selectedSizes.length === 0) {
-        return true
+        return eachProduct.title.includes(searchedProduct)
       }
       else {
         let isSelectedSize = selectedSizes.find(item => 
-          eachProduct.availableSizes.indexOf(item) !== -1)
+          eachProduct.availableSizes.indexOf(item) !== -1 && eachProduct.title.includes(searchedProduct))
         return isSelectedSize === undefined ? false : true
       }
     })

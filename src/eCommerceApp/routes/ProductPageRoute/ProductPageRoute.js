@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import { observer, inject } from 'mobx-react';
-import ProductsPage from "../components/ProductsPage";
-import AuthStore from '../../authentication/stores/AuthStore/AuthStore';
-@inject('productStore')
+
+import ProductsPage from "../../components/ProductsPage";
+import { getAccessToken } from "../../../authentication/utils/StorageUtils";
+import { SIGN_IN_PATH } from "../../../authentication/constants/RoutePath";
+
+@inject('productStore','authStore')
 @observer
 class ProductPageRoute extends Component {
   
@@ -16,13 +19,14 @@ class ProductPageRoute extends Component {
   }
   
   doNetworkCalls = () => {
+    let token = getAccessToken();
     this.props.productStore.getProductAPI()
   }
 
   handleSignout = () => {
-    AuthStore.clearUserSession
+    this.props.authStore.userSignOut()
     const {history} = this.props
-    history.replace({pathname:'/ecommerce-store/sign-in'})
+    history.push(SIGN_IN_PATH)
   }
 
   render() {

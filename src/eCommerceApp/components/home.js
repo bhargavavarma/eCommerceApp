@@ -9,7 +9,7 @@ class ProductHome extends React.Component {
         <nav>
           <ul>
             <li>
-              <Link to="/ProductsPage">1.E-Commerce App</Link> 
+              <Link to="/ProductPage">1.E-Commerce App</Link> 
             </li>
           </ul>
         </nav> 
