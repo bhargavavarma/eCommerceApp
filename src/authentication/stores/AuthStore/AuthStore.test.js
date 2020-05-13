@@ -3,10 +3,10 @@ import {
   API_FAILED,
   API_FETCHING,
   API_INITIAL
-} from "@ib/api-constants";
-
+}
+from "@ib/api-constants";
 import AuthAPI from "../../services/AuthService/AuthAPI";
-import getUserSignInResponse from "../../../fixtures/getUsersResponse.json"
+import getUserSignInResponse from "../../../fixtures/getUsersResponse.json";
 
 import AuthStore from ".";
 
@@ -44,7 +44,7 @@ describe("AuthStore Tests", () => {
     expect(onFailure).not.toBeCalled();
   });
 
-  it("should test userSignInAPI success state", async () => {
+  it("should test userSignInAPI success state", async() => {
     const onSuccess = jest.fn();
     const onFailure = jest.fn();
 
@@ -66,7 +66,7 @@ describe("AuthStore Tests", () => {
     // expect(onSuccess).toBeCalled();
   });
 
-  it("should test userSignInAPI failure state", async () => {
+  it("should test userSignInAPI failure state", async() => {
     const onSuccess = jest.fn();
     const onFailure = jest.fn();
     const requestObject = {
