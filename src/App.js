@@ -1,9 +1,10 @@
 import React from "react"
-import { 
+import {
   HashRouter as Router,
   Switch,
-  Route 
-} from "react-router-dom" 
+  Route
+}
+from "react-router-dom"
 import { observer, Provider } from 'mobx-react'
 import { observable } from 'mobx'
 
@@ -16,32 +17,36 @@ import { ToDoList } from './components/toDOList/index'
 import TodoApp from './components/mobxTodoApp/TodoApp/index'
 import TodoAppAPI from './components/MobxTodoAppAPI/TodoAppAPI/index'
 import Home from './components/home.js';
+import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp';
+import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index';
+import Mcq from './components/McqPractice/mcq'
+import CounterApp from './components/CounterApp/index';
+import { Greetings } from './components/FormComponents/Greetings.js';
+import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js';
+import { VisitedCities } from './components/FormComponents/VisitedCities.js';
+import { YourState } from './components/FormComponents/YourState.js';
+import { DisableButton } from './components/FormComponents/DisableButton.js';
+import { FormComponentHome } from './components/FormComponents/FormComponentHome.js';
+import CountryDetails from './components/Countries_Dashboard_App/CountryDetails.js';
+import CounterPage from './components/CounterPage/index';
+
+const cityList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"];
+const states = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"];
+
+import themeStore from './stores/ThemeStore';
 import ProductHome from './eCommerceApp/components/home';
-import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index'
-import CounterApp from './components/CounterApp/index'
+
 import EventApp from './components/EventsPage/EventsApp/index'
 import GridMemoryGame from './components/GridMemoryApp/GridMemoryGame/index'
 // import ProductPageRoute from './eCommerceApp/routes/ProductPageRoute/ProductPageRoute'
 // import ProductPage from './eCommerceApp/components/ProductsPage'
-import { Greetings } from './components/FormComponents/Greetings.js'
-import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js'
-import { VisitedCities } from './components/FormComponents/VisitedCities.js'
-import { YourState } from './components/FormComponents/YourState.js'
-import { DisableButton } from './components/FormComponents/DisableButton.js'
-import { FormComponentHome } from './components/FormComponents/FormComponentHome.js'
-import CounterPage from './components/CounterPage/index'
-import themeStore from './stores/ThemeStore'
 import UsersPage from './components/UsersPage/index'
 //import LoginPage from './components/LoginPage/index'
 import stores from './eCommerceApp/stores'
 import authStore from './authentication/stores'
 import AuthenticationRoutes from "./authentication/routes"
 import "./App.css"
-import {ProductRoutes} from "./eCommerceApp/routes"
-
-
-const cityList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"]
-const states = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"]
+import { ProductRoutes } from "./eCommerceApp/routes"
 
 @observer
 class App extends React.Component {
@@ -59,13 +64,13 @@ class App extends React.Component {
   themeOptions = {
     light: {
       id: "0",
-      displayText : 'Dark Mode',
+      displayText: 'Dark Mode',
       color: "#fff",
       textColor: 'black',
     },
     dark: {
       id: "1",
-      displayText : 'Light Mode',
+      displayText: 'Light Mode',
       color: "#2b3945",
       textColor: 'white',
     },
@@ -114,6 +119,9 @@ class App extends React.Component {
         <Route path='/CounterApp'>
           <CounterApp />
         </Route>
+        <Route path='/Mcqs'>
+          <Mcq />
+        </Route>
         <Route path='/events-app'>
           <EventApp />
         </Route>
@@ -161,34 +169,33 @@ export default App;
 
 // countriesDashBoard
 
-  /*themeOptions = {
-    light: {
-      id: "0",
-      color: "#fff",
-      displayText: "Dark Theme",
-      textColor: 'black',
-      cardColor: 'white',
-      background: '#ebf8ff',
-      red: "red",
-      green: "green"
-    },
-    dark: {
-      id: "1",
-      color: "#2b3945",
-      displayText: "Light Theme",
-      textColor: '#fff',
-      cardColor: ' #2b6cb0',
-      background: 'black',
-      red: "red",
-      green: "green"
-    },
-    <Route path='/CountriesDashboardApp'>
-      <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
+/*themeOptions = {
+  light: {
+    id: "0",
+    color: "#fff",
+    displayText: "Dark Theme",
+    textColor: 'black',
+    cardColor: 'white',
+    background: '#ebf8ff',
+    red: "red",
+    green: "green"
+  },
+  dark: {
+    id: "1",
+    color: "#2b3945",
+    displayText: "Light Theme",
+    textColor: '#fff',
+    cardColor: ' #2b6cb0',
+    background: 'black',
+    red: "red",
+    green: "green"
+  },
+  <Route path='/CountriesDashboardApp'>
+    <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
+      selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+      </Route>
+      <Route path="/:id">
+        <CountryDetails onChangeTheme = { this.onChangeTheme } 
         selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-        </Route>
-        <Route path="/:id">
-          <CountryDetails onChangeTheme = { this.onChangeTheme } 
-          selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-        </Route>
-  }*/
-
+      </Route>
+}*/
