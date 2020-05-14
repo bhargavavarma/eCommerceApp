@@ -15,6 +15,8 @@ class SignInRoute extends React.Component {
   @observable errorMessage = "";
   @observable isLoading = false;
 
+  signInFormRef = React.createRef();
+
   @action.bound
   onChangeUsername(e) {
     this.username = e.target.value;
@@ -34,6 +36,7 @@ class SignInRoute extends React.Component {
   onSignInSuccess = () => {
     const { history } = this.props;
     history.push(E_COMMERCE_PRODUCTS_PATH);
+    this.isLoading = true;
   };
 
   onSignInFailure = () => {
@@ -48,12 +51,17 @@ class SignInRoute extends React.Component {
     e.preventDefault();
     if (this.username === "" || this.username === undefined) {
       this.errorMessage = "Please enter username";
+      this.signInFormRef.current.userNameRef.current.focus();
+      this.isLoading = false;
       return;
     } else if (this.password === "" || this.password === undefined) {
       this.errorMessage = "Please enter password";
+      this.signInFormRef.current.passwordRef.current.focus();
+      this.isLoading = false;
       return;
     } else {
       this.errorMessage = "";
+      this.isLoading = true;
       userSignIn(
         {
           username: this.username,
@@ -67,7 +75,7 @@ class SignInRoute extends React.Component {
 
   render() {
     return (
-      <SignInForm
+      <SignInForm ref={this.signInFormRef}
         errorMessage={this.errorMessage}
         username={this.username}
         password={this.password}

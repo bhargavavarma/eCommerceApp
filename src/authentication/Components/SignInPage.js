@@ -1,9 +1,11 @@
 import React from "react";
 import { observer } from "mobx-react";
+import Loader from 'react-loader-spinner';
 
 @observer
 class SignInForm extends React.Component {
   userNameRef = React.createRef();
+  passwordRef = React.createRef();
 
   componentDidMount() {
     this.userNameRef.current.focus();
@@ -11,7 +13,6 @@ class SignInForm extends React.Component {
 
   render() {
     const {
-      apiStatus,
       username,
       onChangeUsername,
       password,
@@ -32,7 +33,7 @@ class SignInForm extends React.Component {
             className="border border-gray-400 mb-3 w-48 h-10 pl-2 focus:outline-none rounded"
             placeholder="Username"
           />
-          <input
+          <input ref={this.passwordRef}
             type="password"
             value={password}
             onChange={onChangePassword}
@@ -43,12 +44,12 @@ class SignInForm extends React.Component {
           <button
             onClick={onSubmitForm}
             className="flex justify-center w-48 h-10 rounded bg-gray-900 text-white"
-            apiStatus={apiStatus}
             onKeyPress={onEnterKeyPress}
-          >{loadingSpinner ? <i aria-label='audio-loading' className='fa fa-circle-o-notch fa-spin'></i>:'Sign in'}</button>
+          >{loadingSpinner ? <Loader type="Oval" color="white" width={20} height={20}/>:
+              'Sign in'}</button>
           {errorMessage !== "" && errorMessage !== undefined ? (
             <span className="text-red-700 mt-2 w-48 text-sm text-center">
-              Network Error
+              {errorMessage}
             </span>
           ) : null}
         </form>

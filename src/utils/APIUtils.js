@@ -11,7 +11,6 @@ export const networkCallWithApisauce = async (
   let response = null
   try {
     response = await getData(api, url, requestObject, type)
-    console.log(response)
   } catch (error) {
     throw error
   }
