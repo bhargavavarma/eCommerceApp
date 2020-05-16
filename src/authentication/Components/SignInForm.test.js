@@ -3,15 +3,13 @@ import { render } from "@testing-library/react";
 
 import SignInForm from ".";
 
-describe("SignInForm", () => {
+describe("SignInForm test cases", () => {
   it("should render typed username", () => {
     const username = "test-user";
     const { getByPlaceholderText } = render(
       <SignInForm username={username} onChangeUsername={() => {}} />
     );
-
     const usernameField = getByPlaceholderText("Username");
-
     expect(usernameField.value).toBe(username);
   });
 
@@ -20,9 +18,7 @@ describe("SignInForm", () => {
     const { getByPlaceholderText } = render(
       <SignInForm password={password} onChangePassword={() => {}} />
     );
-
     const passwordField = getByPlaceholderText("Password");
-
     expect(passwordField.value).toBe(password);
   });
 
@@ -30,7 +26,6 @@ describe("SignInForm", () => {
     const { getByText } = render(
       <SignInForm errorMessage="Invalid username" />
     );
-
     getByText(/invalid username/i);
   });
 });

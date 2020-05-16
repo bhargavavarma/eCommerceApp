@@ -3,8 +3,9 @@ import { observer, inject } from "mobx-react";
 import { observable, action } from "mobx";
 import { withRouter } from "react-router-dom";
 
-import { E_COMMERCE_PRODUCTS_PATH } from "../../../eCommerceApp/constants/ProductPath";
-
+import { 
+  E_COMMERCE_PRODUCTS_PATH
+} from "../../../eCommerceApp/constants/ProductPath";
 import SignInForm from "../../Components/SignInPage";
 
 @inject("authStore")
@@ -46,7 +47,7 @@ class SignInRoute extends React.Component {
     }
   };
 
-  onSubmitForm = e => {
+  onSubmitForm = async (e) => {
     const { userSignIn } = this.props.authStore;
     e.preventDefault();
     if (this.username === "" || this.username === undefined) {
@@ -62,7 +63,7 @@ class SignInRoute extends React.Component {
     } else {
       this.errorMessage = "";
       this.isLoading = true;
-      userSignIn(
+      await userSignIn(
         {
           username: this.username,
           password: this.password

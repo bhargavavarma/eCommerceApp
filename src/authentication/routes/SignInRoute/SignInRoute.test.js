@@ -11,7 +11,6 @@ import {
 import AuthAPI from "../../services/AuthService/AuthAPI";
 import AuthStore from "../../stores/AuthStore";
 import getUserSignInResponse from "../../../fixtures/getUsersResponse.json";
-
 import SignInRoute from ".";
 
 const LocationDisplay = withRouter(({ location }) => (
@@ -68,7 +67,6 @@ describe("SignInRoute Tests", () => {
     );
     const username = "test-user";
     const password = "test-password";
-
     const usernameField = getByPlaceholderText("Username");
     const passwordField = getByPlaceholderText("Password");
     const signInButton = getByRole("button", { name: "Sign in" });
@@ -92,7 +90,6 @@ describe("SignInRoute Tests", () => {
     const usernameField = getByPlaceholderText("Username");
     const passwordField = getByPlaceholderText("Password");
     const signInButton = getByRole("button", { name: "Sign in" });
-
     const mockLoadingPromise = new Promise(function(resolve, reject) {});
     const mockSignInAPI = jest.fn();
     mockSignInAPI.mockReturnValue(mockLoadingPromise);
@@ -132,11 +129,9 @@ describe("SignInRoute Tests", () => {
 
     const username = "test-user";
     const password = "test-password";
-
     const usernameField = getByPlaceholderText("Username");
     const passwordField = getByPlaceholderText("Password");
     const signInButton = getByRole("button", { name: "Sign in" });
-
     const mockSuccessPromise = new Promise(function(resolve, reject) {
       resolve(getUserSignInResponse);
     });
@@ -167,11 +162,9 @@ describe("SignInRoute Tests", () => {
 
     const username = "test-user";
     const password = "test-password";
-
     const usernameField = getByPlaceholderText("Username");
     const passwordField = getByPlaceholderText("Password");
     const signInButton = getByRole("button", { name: "Sign in" });
-
     const mockFailurePromise = new Promise(function(resolve, reject) {
       reject(new Error("error"));
     }).catch(() => {});

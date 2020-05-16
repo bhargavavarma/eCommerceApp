@@ -17,7 +17,7 @@ import { ToDoList } from './components/toDOList/index'
 import TodoApp from './components/mobxTodoApp/TodoApp/index'
 import TodoAppAPI from './components/MobxTodoAppAPI/TodoAppAPI/index'
 import Home from './components/home.js';
-import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp';
+import CountriesDashboardApp from './components/Countries_Dashboard_App/CountriesDashboardApp';
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index';
 import Mcq from './components/McqPractice/mcq'
 import CounterApp from './components/CounterApp/index';
@@ -61,20 +61,45 @@ class App extends React.Component {
     themeStore.setCurrentTheme(theme);
   }
 
+  // country Dashboard themeoptions
+  
   themeOptions = {
-    light: {
-      id: "0",
-      displayText: 'Dark Mode',
-      color: "#fff",
-      textColor: 'black',
-    },
-    dark: {
-      id: "1",
-      displayText: 'Light Mode',
-      color: "#2b3945",
-      textColor: 'white',
-    },
+  light: {
+    id: "0",
+    color: "#fff",
+    displayText: "Dark Theme",
+    textColor: 'black',
+    cardColor: 'white',
+    background: '#ebf8ff',
+    red: "red",
+    green: "green"
+  },
+  dark: {
+    id: "1",
+    color: "#2b3945",
+    displayText: "Light Theme",
+    textColor: '#fff',
+    cardColor: ' #2b6cb0',
+    background: 'black',
+    red: "red",
+    green: "green"
   }
+}
+
+  // themeOptions = {
+  //   light: {
+  //     id: "0",
+  //     displayText: 'Dark Mode',
+  //     color: "#fff",
+  //     textColor: 'black',
+  //   },
+  //   dark: {
+  //     id: "1",
+  //     displayText: 'Light Mode',
+  //     color: "#2b3945",
+  //     textColor: 'white',
+  //   },
+  // }
 
   onChangeTheme = () => {
     if (this.getCurrentTheme() === 'light') {
@@ -92,6 +117,14 @@ class App extends React.Component {
       <Switch>
         {AuthenticationRoutes}
         <Route path='/ProductPage' component={ProductRoutes}/>
+        <Route path='/CountriesDashboardApp'>
+    <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
+      selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+      </Route>
+      <Route path="/:id">
+        <CountryDetails onChangeTheme = { this.onChangeTheme } 
+        selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+      </Route>
         <Route path='/Counter-page'>
           <CounterPage />
         </Route>
@@ -115,6 +148,7 @@ class App extends React.Component {
         <Route path='/EmojiGame'>
           <EmojiGameDashboardApp onChangeTheme = { this.onChangeTheme } 
             selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+        <Route path='/events-app'>
         </Route>
         <Route path='/CounterApp'>
           <CounterApp />
@@ -122,7 +156,6 @@ class App extends React.Component {
         <Route path='/Mcqs'>
           <Mcq />
         </Route>
-        <Route path='/events-app'>
           <EventApp />
         </Route>
         <Route path='/grid-game '>
@@ -148,6 +181,10 @@ class App extends React.Component {
         <Route path='/eCommerceApp/'>
           <ProductHome />
         </Route>
+        <Route path="/:id">
+        <CountryDetails onChangeTheme = { this.onChangeTheme } 
+        selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
+        </Route>
         <Route exact path="/page-1">
           <Page1 />
         </Route>
@@ -162,40 +199,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-//import { CountriesDashboardApp } from './components/Countries_Dashboard_App/CountriesDashboardApp'
-//import CountryDetails from './components/Countries_Dashboard_App/CountryDetails.js'
-
-// countriesDashBoard
-
-/*themeOptions = {
-  light: {
-    id: "0",
-    color: "#fff",
-    displayText: "Dark Theme",
-    textColor: 'black',
-    cardColor: 'white',
-    background: '#ebf8ff',
-    red: "red",
-    green: "green"
-  },
-  dark: {
-    id: "1",
-    color: "#2b3945",
-    displayText: "Light Theme",
-    textColor: '#fff',
-    cardColor: ' #2b6cb0',
-    background: 'black',
-    red: "red",
-    green: "green"
-  },
-  <Route path='/CountriesDashboardApp'>
-    <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
-      selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-      </Route>
-      <Route path="/:id">
-        <CountryDetails onChangeTheme = { this.onChangeTheme } 
-        selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-      </Route>
-}*/

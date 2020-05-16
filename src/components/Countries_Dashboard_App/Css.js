@@ -5,14 +5,14 @@ import tw from 'tailwind.macro';
 
 const PageContainer = styled.div `
     ${tw`
-        flex justify-between items-center p-6 shadow-lg font-bold
-        text-xl w-screen px-10
+        flex justify-between items-center py-6 shadow-lg font-bold
+        text-xl px-10 
     `}
 `;
 
 const Button = styled.button `
     ${tw`
-        flex justify-around text-base border-none cursor-pointer w-32
+        flex justify-around text-base border border-gray-600 cursor-pointer w-32
         text-lg items-center
     `}
 `;
@@ -21,7 +21,7 @@ const Button = styled.button `
 
 const EachCountryCard = styled.div `
     ${tw`
-         h-430 shadow-md w-48 my-6 mx-3
+         h-430 shadow-md w-48 my-6 mx-3 border border-gray-600
     `}
 `;
 
@@ -52,19 +52,22 @@ const CardText = styled.p `
 // CountryDashBoardApp
 
 const Wrapper = styled.div `
+    ${tw`
+    h-screen
+    `}
     background:${props=>props.theme.color};
     color:${props=>props.theme.textColor}
 `;
 
 const SearchCountrySelectRegion = styled.div `
     ${tw`
-        flex justify-between w-screen px-10 py-8 items-center
+        flex justify-between px-10 py-8 items-center
     `}
 `;
 
 const SelectRegion = styled.div `
     ${tw`
-        flex items-center justify-center h-10 w-30 text-base
+        flex items-center border border-gray-600 justify-center h-10 w-30 text-base
     `}
 `;
 
@@ -76,7 +79,7 @@ const CountryBody = styled.div `
 
 const SearchBox = styled.div `
     ${tw`
-        flex justify-center items-center shadow-md px-2 text-gray-500 w-64
+        flex justify-center items-center border border-gray-600 shadow-md px-2 text-gray-500 w-64
     `}
 `;
 

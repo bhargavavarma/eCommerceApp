@@ -6,6 +6,7 @@ import CountryCard from './CountryCard.js';
 import { GetRegionOptions } from './getRegionOptions.js';
 import { IoMdSearch } from 'react-icons/io';
 import { TiArrowSync } from 'react-icons/ti';
+import UpdatedComponent from './FetchingCountryList';
 
 import {
     Wrapper,
@@ -13,9 +14,7 @@ import {
     SelectRegion,
     CountryBody,
     SearchBox,
-    TextMessage,
-    AscendingDesendingButoons,
-    Sorting
+    TextMessage
 }
 from './Css';
 
@@ -31,10 +30,10 @@ class CountriesDashboardApp extends React.Component {
         displayContent: true
     }
 
-    async componentDidMount() {
-        const response = await fetch('https://restcountries.eu/rest/v2/all')
-        const json = await response.json();
-        this.setState({ countries: json, displayText: 'No Data to show...' });
+    componentDidMount() {
+        // const response = await fetch('https://restcountries.eu/rest/v2/all')
+        // const json = await response.json();
+        this.setState({ countries: this.props.countries, displayText: 'No Data to show...' });
     }
 
     filterCountriesBySelectedRegion = (event) => {
@@ -73,6 +72,8 @@ class CountriesDashboardApp extends React.Component {
                 (filterCountry.region === selectedRegion || selectedRegion === 'All');
         });
 
+        
+
         return (
             <Wrapper theme = { this.props.selectedTheme }>
                 <Header onChangeTheme = { this.props.onChangeTheme }
@@ -83,10 +84,6 @@ class CountriesDashboardApp extends React.Component {
                         <input type='text58' className='input' onKeyDown={this.onChangeSearchText} 
                             placeholder='Search for a country...'/>
                     </SearchBox>
-                    <Sorting>
-                        <AscendingDesendingButoons onClick={this.navigateHome}>A - Z</AscendingDesendingButoons>
-                        <AscendingDesendingButoons onClick={this.navigateHome}>Z - A</AscendingDesendingButoons>
-                    </Sorting>
                     <SelectRegion>
                         <GetRegionOptions countries={this.state.countries}
                             filterCountriesBySelectedRegion={this.filterCountriesBySelectedRegion}/>
@@ -109,7 +106,7 @@ class CountriesDashboardApp extends React.Component {
     }
 }
 
-export { CountriesDashboardApp };
+export default UpdatedComponent(CountriesDashboardApp);
 
 
 // length>0
