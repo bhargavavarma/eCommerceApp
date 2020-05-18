@@ -39,7 +39,7 @@ export default Counter*/ // 3 naa ans: 1
 
 
 
-import React from "react";
+/*import React from "react";
 import { render } from "react-dom";
 import { observer } from "mobx-react";
 import { observable, action } from "mobx";
@@ -94,4 +94,29 @@ class CounterChild extends React.Component {
     }
 }
 
-export default CounterParent;
+export default CounterParent;*/
+import React from "react";
+class MouseTracker extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleMouseMove = this.handleMouseMove.bind(this);
+        this.state = { x: 0, y: 0 };
+    }
+
+    handleMouseMove(event) {
+        this.setState({
+            x: event.touches[0].clientX,
+            y: event.touches[0].clientY
+        });
+    }
+
+    render() {
+        return (
+            <div style={{ height: '100vh' }} onTouchMove={this.handleMouseMove}>
+        <h1>Move the mouse around!</h1>
+        <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
+      </div>
+        );
+    }
+}
+export default MouseTracker;

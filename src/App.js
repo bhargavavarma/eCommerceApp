@@ -12,6 +12,7 @@ import { observable } from 'mobx'
 //import HomePage from './eCommerceApp/components/HomePage/index'
 import Page1 from "./components/Page1"
 //import authenticationRoutes from './authentication/routes/index'
+import MouseTracker from "./components/McqPractice/mcq.js";
 import { CarsList } from './components/CarsList/index'
 import { ToDoList } from './components/toDOList/index'
 import TodoApp from './components/mobxTodoApp/TodoApp/index'
@@ -62,29 +63,29 @@ class App extends React.Component {
   }
 
   // country Dashboard themeoptions
-  
+
   themeOptions = {
-  light: {
-    id: "0",
-    color: "#fff",
-    displayText: "Dark Theme",
-    textColor: 'black',
-    cardColor: 'white',
-    background: '#ebf8ff',
-    red: "red",
-    green: "green"
-  },
-  dark: {
-    id: "1",
-    color: "#2b3945",
-    displayText: "Light Theme",
-    textColor: '#fff',
-    cardColor: ' #2b6cb0',
-    background: 'black',
-    red: "red",
-    green: "green"
+    light: {
+      id: "0",
+      color: "#fff",
+      displayText: "Dark Theme",
+      textColor: 'black',
+      cardColor: 'white',
+      background: '#ebf8ff',
+      red: "red",
+      green: "green"
+    },
+    dark: {
+      id: "1",
+      color: "#2b3945",
+      displayText: "Light Theme",
+      textColor: '#fff',
+      cardColor: ' #2b6cb0',
+      background: 'black',
+      red: "red",
+      green: "green"
+    }
   }
-}
 
   // themeOptions = {
   //   light: {
@@ -115,6 +116,10 @@ class App extends React.Component {
       <Provider {...stores} {...authStore}>
       <Router basename={process.env.PUBLIC_URL}>
       <Switch>
+      <Route path="/Example">
+        <MouseTracker/>
+        </Route>
+        
         {AuthenticationRoutes}
         <Route path='/ProductPage' component={ProductRoutes}/>
         <Route path='/CountriesDashboardApp'>

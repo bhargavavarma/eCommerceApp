@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom"
 class Home extends React.Component {
 
   render() {
-    
+
     return (
       <div>
         <nav>
@@ -51,6 +51,10 @@ class Home extends React.Component {
             <li>
               <Link to="/ProductPage">14.E-Commerce App</Link> 
             </li>
+            <li>
+              <Link to="/Example">15.HandsOn</Link> 
+            </li>
+            
           </ul>
         </nav> 
       </div>
