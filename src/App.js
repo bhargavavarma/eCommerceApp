@@ -121,10 +121,6 @@ class App extends React.Component {
     <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
       selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
       </Route>
-      <Route path="/:id">
-        <CountryDetails onChangeTheme = { this.onChangeTheme } 
-        selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
-      </Route>
         <Route path='/Counter-page'>
           <CounterPage />
         </Route>
