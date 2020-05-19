@@ -9,101 +9,102 @@ import { TiArrowSync } from 'react-icons/ti';
 import UpdatedComponent from './FetchingCountryList';
 
 import {
-    Wrapper,
-    SearchCountrySelectRegion,
-    SelectRegion,
-    CountryBody,
-    SearchBox,
-    TextMessage
+  Wrapper,
+  SearchCountrySelectRegion,
+  SelectRegion,
+  CountryBody,
+  SearchBox,
+  TextMessage
 }
 from './Css';
 
 class CountriesDashboardApp extends React.Component {
 
-    id = 0;
+  id = 0;
 
-    state = {
-        countries: [],
-        searchText: '',
-        selectedRegion: 'All',
-        displayText: 'loading...',
-        displayContent: true
+  state = {
+    countries: [],
+    searchText: '',
+    selectedRegion: 'All',
+    displayText: 'loading...',
+    displayContent: true
+  }
+
+  filterCountriesBySelectedRegion = (event) => {
+    if (event.target.value === "All") {
+      this.setState({ 
+        selectedRegion: 'All' 
+      });
+    } else {
+      this.setState({ 
+        selectedRegion: event.target.value 
+      });
     }
+  }
 
-    componentDidMount() {
-        // const response = await fetch('https://restcountries.eu/rest/v2/all')
-        // const json = await response.json();
-        this.setState({ countries: this.props.countries, displayText: 'No Data to show...' });
+  onChangeSearchText = (event) => {
+    let searchInputPattern = /^[a-zA-Z]*[^#$%^&*!@/\\]$/;
+    let userInput = event.target.value;
+    if (searchInputPattern.test(userInput)) {
+      this.setState({
+        searchText: userInput, 
+        displayContent: true 
+      });
     }
-
-    filterCountriesBySelectedRegion = (event) => {
-        if (event.target.value === "All") {
-            this.setState({ selectedRegion: 'All' });
-        }
-        else {
-            this.setState({ selectedRegion: event.target.value });
-        }
+    else if (userInput === "") {
+      this.setState({ 
+        searchText: '', 
+        displayContent: true 
+      });
     }
+  }
 
-    onChangeSearchText = (event) => {
-        let searchInputPattern = /^[a-zA-Z]*[^#$%^&*!@/\\]$/;
-        let userInput = event.target.value;
-        if (event.keyCode === 13) {
-            if (searchInputPattern.test(userInput)) {
-                this.setState({ searchText: userInput, displayContent: true });
-            }
-            else if (userInput === "") {
-                this.setState({ searchText: userInput, displayContent: true });
-            }
-            else {
-                this.setState({
-                    displayText: 'Please enter valid inputs...',
-                    displayContent: false
-                });
-            }
-        }
-    }
+  render() {
+    const {countries} = this.props
+    let selectedRegion = this.state.selectedRegion;
+    let searchText = this.state.searchText;
+    let countryObjects = 
+      countries.filter(function(filterCountry) {
+        return filterCountry.name.toLowerCase().search(searchText.toLowerCase()) !== -1 &&
+          (filterCountry.region === selectedRegion || 
+            selectedRegion === 'All');
+    });
 
-    render() {
-        let selectedRegion = this.state.selectedRegion;
-        let searchText = this.state.searchText;
-        let countryObjects = this.state.countries.filter(function(filterCountry) {
-            return filterCountry.name.toLowerCase().search(searchText.toLowerCase()) !== -1 &&
-                (filterCountry.region === selectedRegion || selectedRegion === 'All');
-        });
-
-        
-
-        return (
-            <Wrapper theme = { this.props.selectedTheme }>
-                <Header onChangeTheme = { this.props.onChangeTheme }
-                        selectedTheme = { this.props.selectedTheme }/>
-                <SearchCountrySelectRegion>
-                    <SearchBox>
-                        <IoMdSearch size={32}/>
-                        <input type='text58' className='input' onKeyDown={this.onChangeSearchText} 
-                            placeholder='Search for a country...'/>
-                    </SearchBox>
-                    <SelectRegion>
-                        <GetRegionOptions countries={this.state.countries}
-                            filterCountriesBySelectedRegion={this.filterCountriesBySelectedRegion}/>
-                    </SelectRegion>
-                </SearchCountrySelectRegion>
-                <CountryBody>
-                    {countryObjects.length>0 && this.state.displayContent ? 
-                        countryObjects.map(eachCountry => {
-                                    this.id += 1;
-                                    return <CountryCard countryObjects={eachCountry} key={this.id}/>;
-                    }):
-                        <TextMessage>
-                            <TiArrowSync />
-                            {this.state.displayText}
-                        </TextMessage>
-                    }
-                </CountryBody>
-            </Wrapper>
-        );
-    }
+    return (
+      <Wrapper theme = { this.props.selectedTheme }>
+        <Header onChangeTheme = { this.props.onChangeTheme }
+          selectedTheme = { this.props.selectedTheme }/>
+        <SearchCountrySelectRegion>
+          <SearchBox>
+            <IoMdSearch size={32}/>
+            <input type = 'text58' className = 'input' 
+              onChange = {this.onChangeSearchText} 
+              placeholder = 'Search for a country...'/>
+          </SearchBox>
+          <SelectRegion>
+            <GetRegionOptions countries = {this.props.countries}
+              filterCountriesBySelectedRegion =
+                {this.filterCountriesBySelectedRegion}/>
+          </SelectRegion>
+        </SearchCountrySelectRegion>
+        <CountryBody>
+          {countryObjects.length>0 && 
+            this.state.displayContent ? 
+            countryObjects.map(eachCountry => {
+              this.id += 1;
+              return <CountryCard 
+                countryObjects={eachCountry} 
+                key={this.id}/>;
+            }):
+            <TextMessage>
+              <TiArrowSync />
+              {this.state.displayText}
+            </TextMessage>
+          }
+        </CountryBody>
+      </Wrapper>
+    );
+  }
 }
 
 export default UpdatedComponent(CountriesDashboardApp);
