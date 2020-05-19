@@ -53,7 +53,7 @@ const CardText = styled.p `
 
 const Wrapper = styled.div `
     ${tw`
-    h-screen
+    
     `}
     background:${props=>props.theme.color};
     color:${props=>props.theme.textColor}
@@ -67,7 +67,8 @@ const SearchCountrySelectRegion = styled.div `
 
 const SelectRegion = styled.div `
     ${tw`
-        flex items-center border border-gray-600 justify-center h-10 w-30 text-base
+        flex items-center border border-gray-600 justify-center
+        h-10 w-30 text-base text-black
     `}
 `;
 
@@ -79,7 +80,8 @@ const CountryBody = styled.div `
 
 const SearchBox = styled.div `
     ${tw`
-        flex justify-center items-center border border-gray-600 shadow-md px-2 text-gray-500 w-64
+        flex justify-center items-center border 
+        border-gray-600 shadow-md px-2 text-gray-500 w-64
     `}
 `;
 
@@ -106,7 +108,7 @@ const Sorting = styled.div `
 
 const EachCountryBody = styled.div `
     ${tw`
-        flex items-center flex-col h-screen
+        flex items-center flex-col
     `}
     background:${props=>props.theme.color};
     color:${props=>props.theme.textColor}

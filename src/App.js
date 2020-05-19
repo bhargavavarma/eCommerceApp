@@ -1,3 +1,13 @@
+import React from "react"
+import {
+  HashRouter as Router,
+  Switch,
+  Route
+}
+from "react-router-dom";
+import { observable } from 'mobx';
+import { observer, Provider } from 'mobx-react';
+
 // import HomePage from "./components/HomePage"
 //import HomePage from './eCommerceApp/components/HomePage/index'
 import Page1 from "./components/Page1"
