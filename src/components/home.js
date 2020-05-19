@@ -52,7 +52,7 @@ class Home extends React.Component {
               <Link to="/ProductPage">14.E-Commerce App</Link> 
             </li>
             <li>
-              <Link to="/Example">15.HandsOn</Link> 
+              <Link to="/practice-advanced-concepts">15.advanced concepts</Link> 
             </li>
             
           </ul>

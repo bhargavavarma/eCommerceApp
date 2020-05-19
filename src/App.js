@@ -19,7 +19,7 @@ import TodoAppAPI from './components/MobxTodoAppAPI/TodoAppAPI/index'
 import Home from './components/home.js';
 import CountriesDashboardApp from './components/Countries_Dashboard_App/CountriesDashboardApp';
 import EmojiGameDashboardApp from './components/EmojiGame/EmojiGameDashboardApp/index';
-import Mcq from './components/McqPractice/mcq'
+import AdvancedConcepts from './components/McqPractice/mcq'
 import CounterApp from './components/CounterApp/index';
 import { Greetings } from './components/FormComponents/Greetings.js';
 import { FavouriteDessert } from './components/FormComponents/FavouriteDessert.js';
@@ -121,6 +121,9 @@ class App extends React.Component {
     <CountriesDashboardApp onChangeTheme = { this.onChangeTheme } 
       selectedTheme = { this.themeOptions[this.getCurrentTheme()] }/>
       </Route>
+      <Route path='/practice-advanced-concepts'>
+          <AdvancedConcepts />
+        </Route>
         <Route path='/Counter-page'>
           <CounterPage />
         </Route>
@@ -148,9 +151,6 @@ class App extends React.Component {
         </Route>
         <Route path='/CounterApp'>
           <CounterApp />
-        </Route>
-        <Route path='/Mcqs'>
-          <Mcq />
         </Route>
           <EventApp />
         </Route>

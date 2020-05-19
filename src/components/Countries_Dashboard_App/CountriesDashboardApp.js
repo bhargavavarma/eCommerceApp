@@ -6,7 +6,7 @@ import CountryCard from './CountryCard.js';
 import { GetRegionOptions } from './getRegionOptions.js';
 import { IoMdSearch } from 'react-icons/io';
 import { TiArrowSync } from 'react-icons/ti';
-import UpdatedComponent from './FetchingCountryList';
+import FetchingDataComponent from './FetchingCountryList';
 
 import {
   Wrapper,
@@ -23,7 +23,6 @@ class CountriesDashboardApp extends React.Component {
   id = 0;
 
   state = {
-    countries: [],
     searchText: '',
     selectedRegion: 'All',
     displayText: 'loading...',
@@ -107,8 +106,7 @@ class CountriesDashboardApp extends React.Component {
   }
 }
 
-export default UpdatedComponent(CountriesDashboardApp);
-
+export default FetchingDataComponent(CountriesDashboardApp);
 
 // length>0
 // searchbar spaces - mundu spaces trim cheyali

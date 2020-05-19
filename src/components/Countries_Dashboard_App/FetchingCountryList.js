@@ -16,7 +16,9 @@ const FetchingDataComponent = (CountryDashBoardComponent) => {
 
   render() {
     if(this.state.countries.length !==0) {
-      return <CountryDashBoardComponent countries={this.state.countries} {...this.props}/>
+      return <CountryDashBoardComponent 
+        countries={this.state.countries} 
+        {...this.props}/>
     } else {
       return null;
     }}
