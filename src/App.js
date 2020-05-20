@@ -202,12 +202,12 @@ class App extends React.Component {
             <Route exact path="/page-1">
               <Page1 />
             </Route>
-            <Route path="/:id">
+            {/* <Route path="/:id">
               <CountryDetails
                 onChangeTheme={this.onChangeTheme}
                 selectedTheme={this.themeOptions[this.getCurrentTheme()]}
               />
-            </Route>
+            </Route> */}
             <Route path="/">
               <Home />
             </Route>
