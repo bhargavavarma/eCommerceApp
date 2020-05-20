@@ -525,3 +525,6 @@
 [0519/211819.879:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0519/213319.890:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0519/214819.898:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0519/220319.928:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0520/103647.628:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0520/143331.996:ERROR:crash_report_database_win.cc(469)] failed to stat report
