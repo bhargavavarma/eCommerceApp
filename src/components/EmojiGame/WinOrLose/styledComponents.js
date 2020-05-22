@@ -6,6 +6,8 @@ const Win = styled.div `
         h-56 flex justify-center items-center flex-col p-64
         w-screen
     `}
+    background:${props=>props.theme.color};
+    color:${props=>props.theme.textColor};
 `;
 
 const PlayAgainButton = styled.div `
@@ -18,7 +20,6 @@ const DisplayScore = styled.p `
     ${tw`
         py-6 text-3xl font-bold
     `}
-     color:${props=>props.theme.color}
 `;
 
 const DisplayGameState = styled.p `

@@ -73,7 +73,7 @@ class Car extends React.Component {
                         onClick={this.onApplyBrake}>Decelerate</button>
                     </div>
                 </div>
-               </div>;
+            </div>;
     }
 
 }

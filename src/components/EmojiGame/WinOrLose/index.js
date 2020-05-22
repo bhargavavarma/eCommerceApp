@@ -13,9 +13,8 @@ class WinOrLose extends React.Component {
     render() {
         let { score, gameState, onPlayAgainClick, selectedTheme } = this.props;
         return (
-            <Win>
+            <Win theme={selectedTheme}>
                 <DisplayScore>{score}</DisplayScore>
-                {alert(gameState)}
                 <DisplayGameState gameState={gameState} theme={selectedTheme}>{gameState}</DisplayGameState>
                 <PlayAgainButton onClick={onPlayAgainClick}>Play Again</PlayAgainButton>
             </Win>

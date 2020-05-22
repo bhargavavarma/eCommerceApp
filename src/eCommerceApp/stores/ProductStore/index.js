@@ -38,7 +38,8 @@ class ProductStore {
 
   @action.bound
   setProductListResponse(productsResponse) {
-    productsResponse.map(eachProduct => 
+    console.log('response',productsResponse['products'])
+    productsResponse['products'].map(eachProduct => 
       this.onAddProductToList(eachProduct))
   }
 
