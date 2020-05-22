@@ -9,7 +9,16 @@ import {
   Password,
   SubmitButton,
   ErrorMessage
-} from './styledComponents';
+}
+from './styledComponents';
+
+export const SignInButton = (props) => {
+  return (<SubmitButton>
+            {props.loadingSpinner ? 
+              <Loader type="Oval" color="white" 
+                width={20} height={20}/> : 'Sign in'}
+          </SubmitButton>)
+}
 
 @observer
 class SignInForm extends React.Component {
